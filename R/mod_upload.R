@@ -705,8 +705,8 @@ mod_upload_server <- function(input, output, session, parent_session){
       if(!is.null(input$gwaspoly)) {
         
         for(i in 1:length(input$gwaspoly$datapath)){
-          temp <- load(input$gwaspoly$datapath[i])
-          gwaspoly_temp <- get(temp)
+          temp123 <- load(input$gwaspoly$datapath[i])
+          gwaspoly_temp <- get(temp123)
           gwaspoly_list <- GWAS_data_from_gwaspoly(gwaspoly_temp)
 
           if(i == 1) gwaspoly <- gwaspoly_list else {
@@ -803,8 +803,8 @@ mod_upload_server <- function(input, output, session, parent_session){
           warning("Upload a viewpoly dataset or select one available in your R environment before submit.")
           viewpoly.obj <- NULL
         } else if(!is.null(input$viewpoly_input)){
-          temp <- load(input$viewpoly_input$datapath)
-          viewpoly.obj <- get(temp)
+          temp123 <- load(input$viewpoly_input$datapath)
+          viewpoly.obj <- get(temp123)
         } else if(!is.null(input$viewpoly_env)) {
           viewpoly.obj = get(input$viewpoly_env)
         }  
@@ -840,8 +840,8 @@ mod_upload_server <- function(input, output, session, parent_session){
     if(!is.null(input_map()$onemap_in)){
       withProgress(message = 'Working:', value = 0, {
         incProgress(0.3, detail = paste("Uploading OneMap data..."))
-        temp <- load(input_map()$onemap_in$datapath)
-        viewmap <- get(temp)
+        temp123 <- load(input_map()$onemap_in$datapath)
+        viewmap <- get(temp123)
         viewmap
       })
     } else NULL
