@@ -13,7 +13,6 @@
 #'
 mod_hidecan_view_ui <- function(id){
   ns <- NS(id)
-  tagList(
     fluidPage(
       verticalLayout(
         fluidRow(
@@ -27,8 +26,8 @@ mod_hidecan_view_ui <- function(id){
           column(12,
                  column(12,
                         box(
-                          background = "light-blue",
-                          "Required inputs (*)", br(),
+                          background = "lightblue",
+                          "Required inputs (*)", br()
                         )
                  ),
                  column(6,
@@ -101,7 +100,7 @@ mod_hidecan_view_ui <- function(id){
                  box(id = ns("box_hidecan"), width = 12, solidHeader = TRUE, collapsible = TRUE,  collapsed = FALSE, status="primary", title = actionLink(inputId = ns("hidecanID"), label = "HIDECAN plot"),
                      column(12,
                             box(
-                              background = "light-blue",
+                              background = "lightblue",
                               "* HIDECAN analysis files or viewpoly object or example dataset (check `Input data` tab)"
                             )
                      ), 
@@ -115,10 +114,10 @@ mod_hidecan_view_ui <- function(id){
                                    radioButtons(ns("fformat"), "File type", choices=c("png","tiff","jpeg","pdf", "RData"), selected = "png", inline = T)
                             ),                     
                             column(2,
-                                   numericInput(ns("width_hidecan"), "Width (mm)", value = 180),
+                                   numericInput(ns("width_hidecan"), "Width (mm)", value = 180)
                             ),
                             column(2,
-                                   numericInput(ns("height_hidecan"), "Height (mm)", value = 120),
+                                   numericInput(ns("height_hidecan"), "Height (mm)", value = 120)
                             ),
                             column(2,
                                    numericInput(ns("dpi_hidecan"), "DPI", value = 300)
@@ -132,7 +131,6 @@ mod_hidecan_view_ui <- function(id){
         )
       )
     )
-  )
 }
 
 # Inputs for tests

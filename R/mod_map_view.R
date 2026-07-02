@@ -12,10 +12,9 @@
 #'
 mod_map_view_ui <- function(id){
   ns <- NS(id)
-  tagList(
-    fluidPage(
-      verticalLayout(
-        fluidRow(
+  fluidPage(
+    verticalLayout(
+      fluidRow(
           inlineCSS(".form-group {margin-bottom: 0;}
                                 .irs-with-grid {bottom: 0px;}
                                 .irs-grid {height: 13px;}
@@ -34,8 +33,8 @@ mod_map_view_ui <- function(id){
           column(6,
                  column(12,
                         box(
-                          background = "light-blue",
-                          "Required inputs (*)", br(),
+                          background = "lightblue",
+                          "Required inputs (*)", br()
                         )
                  ),
                  column(6,
@@ -49,16 +48,16 @@ mod_map_view_ui <- function(id){
                                           size = 10,
                                           `selected-text-format` = "count > 3"
                                         ), 
-                                        multiple = TRUE),
-                        ), br(),
+                                        multiple = TRUE)
+                        ), br()
                  ),
                  column(6,
                         box(width = 12, solidHeader = TRUE, status="info", title = "Select linkage group *",
                             selectInput(inputId = ns("group"), label = p("Linkage group:"), choices = 1:15, selected = 1),
                             checkboxInput(ns("op"), label = "Show SNP names", value = TRUE)
-                        ), br(),
+                        ), br()
                  )
-          ),
+          )
         ), hr(),
         wellPanel(
           sliderInput(ns("range"), "Map range (cM)", min = 0, max = 300,
@@ -68,8 +67,8 @@ mod_map_view_ui <- function(id){
         box(id= ns("box_profile"), width = 12, solidHeader = TRUE, collapsible = TRUE,  collapsed = TRUE, status="primary", title = actionLink(inputId = ns("profileID"), label = "QTL profile"),
             column(12,
                    box(
-                     width = 5, background = "light-blue",
-                     "* QTL analysis files or viewpoly object or example dataset (check `Input data` tab)", 
+                     width = 5, background = "lightblue",
+                     "* QTL analysis files or viewpoly object or example dataset (check `Input data` tab)"
                    )
             ), 
             column(3,
@@ -81,24 +80,24 @@ mod_map_view_ui <- function(id){
                    radioButtons(ns("fformat"), "File type", choices=c("png","tiff","jpeg","pdf", "RData"), selected = "png", inline = T)
             ),                     
             column(2,
-                   numericInput(ns("width_profile"), "Width (mm)", value = 180),
+                   numericInput(ns("width_profile"), "Width (mm)", value = 180)
             ),
             column(2,
-                   numericInput(ns("height_profile"), "Height (mm)", value = 120),
+                   numericInput(ns("height_profile"), "Height (mm)", value = 120)
             ),
             column(2,
                    numericInput(ns("dpi_profile"), "DPI", value = 300)
             ), br(),
             column(12,
                    hr(),
-                   plotlyOutput(ns("plot_qtl")), 
+                   plotlyOutput(ns("plot_qtl"))
             )
         ), br(),
         box(id = ns("box_map"), width = 12, solidHeader = TRUE, collapsible = TRUE,  collapsed = FALSE, status="primary", title = actionLink(inputId = ns("mapID"), label = "Map"),
             column(12,
                    box(
-                     width = 5, background = "light-blue",
-                     "* Linkage map files or viewpoly object or example dataset (check `Input data` tab)", 
+                     width = 5, background = "lightblue",
+                     "* Linkage map files or viewpoly object or example dataset (check `Input data` tab)"
                    )
             ), 
             column(3,
@@ -108,10 +107,10 @@ mod_map_view_ui <- function(id){
                    radioButtons(ns("fformat_map"), "File type", choices=c("png","tiff","jpeg","pdf"), selected = "png", inline = T)
             ),                     
             column(2,
-                   numericInput(ns("width_map"), "Width (mm)", value = 180),
+                   numericInput(ns("width_map"), "Width (mm)", value = 180)
             ),
             column(2,
-                   numericInput(ns("height_map"), "Height (mm)", value = 120),
+                   numericInput(ns("height_map"), "Height (mm)", value = 120)
             ),
             column(2,
                    numericInput(ns("dpi_map"), "DPI", value = 300)
@@ -127,8 +126,8 @@ mod_map_view_ui <- function(id){
         box(id = ns("box_mapsumm"), width = 12, solidHeader = TRUE, collapsible = TRUE,  collapsed = FALSE, status="primary", title = actionLink(inputId = ns("mapsummID"), label = "Map summary"),
             column(12,
                    box(
-                     width = 5, background = "light-blue",
-                     "* Linkage map files or viewpoly object or example dataset (check `Input data` tab)", 
+                     width = 5, background = "lightblue",
+                     "* Linkage map files or viewpoly object or example dataset (check `Input data` tab)"
                    )
             ), 
             column(12,
@@ -138,13 +137,13 @@ mod_map_view_ui <- function(id){
                    downloadButton(ns('bn_download_summary'), "Download", class = "butt")
             ),
             column(3,
-                   radioButtons(ns("fformat_summary"), "File type", choices=c("png","tiff","jpeg","pdf", "RData"), selected = "png", inline = T), br(),
+                   radioButtons(ns("fformat_summary"), "File type", choices=c("png","tiff","jpeg","pdf", "RData"), selected = "png", inline = T), br()
             ),                     
             column(2,
-                   numericInput(ns("width_summary"), "Width (mm)", value = 180),
+                   numericInput(ns("width_summary"), "Width (mm)", value = 180)
             ),
             column(2,
-                   numericInput(ns("height_summary"), "Height (mm)", value = 120),
+                   numericInput(ns("height_summary"), "Height (mm)", value = 120)
             ),
             column(2,
                    numericInput(ns("dpi_summary"), "DPI", value = 300)
@@ -156,7 +155,6 @@ mod_map_view_ui <- function(id){
         )
       )
     )
-  )
 }
 
 #' map_view Server Functions

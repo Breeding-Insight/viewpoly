@@ -11,7 +11,6 @@
 #' @importFrom shiny NS tagList 
 mod_genes_view_ui <- function(id){
   ns <- NS(id)
-  tagList(
     fluidPage(
       verticalLayout(
         fluidRow(
@@ -33,8 +32,8 @@ mod_genes_view_ui <- function(id){
           column(6,
                  column(12,
                         box(
-                          background = "light-blue",
-                          "Required inputs (*)", br(),
+                          background = "lightblue",
+                          "Required inputs (*)", br()
                         )
                  ),
                  column(6,
@@ -48,15 +47,15 @@ mod_genes_view_ui <- function(id){
                                           size = 10,
                                           `selected-text-format` = "count > 3"
                                         ), 
-                                        multiple = TRUE),
-                        ), br(),
+                                        multiple = TRUE)
+                        ), br()
                  ),
                  column(6,
                         box(width = 12, solidHeader = TRUE, status="info", title = "Select linkage group *",
-                            selectInput(inputId = ns("group"), label = p("Linkage group:"), choices = 1:15, selected = 1),
-                        ), br(),
+                            selectInput(inputId = ns("group"), label = p("Linkage group:"), choices = 1:15, selected = 1)
+                        ), br()
                  )
-          ),
+          )
         ), hr(),
         wellPanel(
           sliderInput(ns("range"), "Map range (cM)", min = 0, max = 300,
@@ -66,7 +65,7 @@ mod_genes_view_ui <- function(id){
         box(id = ns("box_profile"),width = 12, solidHeader = TRUE, collapsible = TRUE,  collapsed = TRUE, status="primary", title = actionLink(inputId = ns("profileID"), label = "QTL profile"),
             column(12,
                    box(
-                     width = 5, background = "light-blue",
+                     width = 5, background = "lightblue",
                      "* QTL analysis files or viewpoly object or example dataset (check `Input data` tab)"
                    )
             ), 
@@ -79,10 +78,10 @@ mod_genes_view_ui <- function(id){
                    radioButtons(ns("fformat"), "File type", choices=c("png","tiff","jpeg","pdf", "RData"), selected = "png", inline = T)
             ),                     
             column(2,
-                   numericInput(ns("width_profile"), "Width (mm)", value = 180),
+                   numericInput(ns("width_profile"), "Width (mm)", value = 180)
             ),
             column(2,
-                   numericInput(ns("height_profile"), "Height (mm)", value = 120),
+                   numericInput(ns("height_profile"), "Height (mm)", value = 120)
             ),
             column(2,
                    numericInput(ns("dpi_profile"), "DPI", value = 300)
@@ -95,8 +94,8 @@ mod_genes_view_ui <- function(id){
         box(id = ns("box_phi"),width = 12, solidHeader = TRUE, collapsible = TRUE,  collapsed = FALSE, status="primary", title = actionLink(inputId = ns("phiID"), label = "Linkage Map position (cM) x Physical position (Mb)"),
             column(12,
                    box(
-                     width = 5, background = "light-blue",
-                     "* MAPpoly linkage map files or viewpoly object or example dataset (check `Input data` tab)", 
+                     width = 5, background = "lightblue",
+                     "* MAPpoly linkage map files or viewpoly object or example dataset (check `Input data` tab)"
                    )
             ), 
             column(3,
@@ -106,10 +105,10 @@ mod_genes_view_ui <- function(id){
                    radioButtons(ns("fformat_phi"), "File type", choices=c("png","tiff","jpeg","pdf", "RData"), selected = "png", inline = T)
             ),                     
             column(2,
-                   numericInput(ns("width_phi"), "Width (mm)", value = 180),
+                   numericInput(ns("width_phi"), "Width (mm)", value = 180)
             ),
             column(2,
-                   numericInput(ns("height_phi"), "Height (mm)", value = 120),
+                   numericInput(ns("height_phi"), "Height (mm)", value = 120)
             ),
             column(2,
                    numericInput(ns("dpi_phi"), "DPI", value = 300)
@@ -122,7 +121,7 @@ mod_genes_view_ui <- function(id){
         box(id = ns("box_jbrowser"), width = 12, height = 1000, solidHeader = TRUE, collapsible = TRUE,  collapsed = FALSE, status="primary", title = actionLink(inputId = ns("jbrowserID"), label = "JBrowseR"),
             column(12,
                    box(
-                     width = 5, background = "light-blue",
+                     width = 5, background = "lightblue",
                      "* Reference genome FASTA (check `Input data` tab)"
                    )
             ), 
@@ -144,7 +143,7 @@ mod_genes_view_ui <- function(id){
         box(id = ns("box_anno"),width = 12, solidHeader = TRUE, collapsible = TRUE,  collapsed = FALSE, status="primary", title = actionLink(inputId = ns("annoID"), label = "Annotation table"),
             column(12,
                    box(
-                     width = 5, background = "light-blue",
+                     width = 5, background = "lightblue",
                      "* Reference genome FASTA (check `Input data` tab)", br(),
                      "* Genome annotation GFF (check `Input data` tab)"
                    )
@@ -155,7 +154,6 @@ mod_genes_view_ui <- function(id){
         )
       )
     )
-  )
 }
 
 #' genes_view Server Functions
