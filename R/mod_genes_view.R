@@ -226,12 +226,12 @@ mod_genes_view_server <- function(input, output, session,
   })
   
   observeEvent(input$goMap, {
-    updateTabsetPanel(session = parent_session, inputId = "viewpoly",
+    updateTabsetPanel(session = parent_session, inputId = "MainMenu",
                       selected = "map")
   })
   
   observeEvent(input$goQTL, {
-    updateTabsetPanel(session = parent_session, inputId = "viewpoly",
+    updateTabsetPanel(session = parent_session, inputId = "MainMenu",
                       selected = "qtl")
   })
   

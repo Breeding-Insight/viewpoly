@@ -13,6 +13,8 @@
 #'
 mod_hidecan_view_ui <- function(id){
   ns <- NS(id)
+    tagList(
+
     fluidPage(
       verticalLayout(
         fluidRow(
@@ -131,6 +133,7 @@ mod_hidecan_view_ui <- function(id){
         )
       )
     )
+    )
 }
 
 # Inputs for tests
@@ -160,7 +163,7 @@ mod_hidecan_view_server <- function(input, output, session,
   ns <- session$ns
   
   observeEvent(input$goMap, {
-    updateTabsetPanel(session = parent_session, inputId = "viewpoly",
+    updateTabsetPanel(session = parent_session, inputId = "MainMenu",
                       selected = "map")
   })
   

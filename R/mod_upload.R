@@ -11,21 +11,24 @@
 #' @importFrom shiny NS tagList 
 mod_upload_ui <- function(id){
   ns <- NS(id)
+    tagList(
     fluidRow(
       column(width = 12,
+       div(style = "background-color: white; padding: 15px; border: 1px solid black;", # Wrap everything in this div
              div(style = "position:absolute;right:1em;", 
                  div(
-                   actionButton(ns("goAbout"), "Go to About",icon("arrow-circle-left", verify_fa = FALSE), class = "btn btn-primary"), 
-                   actionButton(ns("goQTL"), label = div("Go to QTL", icon("arrow-circle-right", verify_fa = FALSE)), class = "btn btn-primary")), br(),
+                   actionButton(ns("goAbout"), "Go to Home",icon("arrow-circle-left", verify_fa = FALSE), style = "background-color: #A896C2 ; border-color: #A896C2 ;"), 
+                   actionButton(ns("goQTL"), label = div("Go to QTL", icon("arrow-circle-right", verify_fa = FALSE)), style = "background-color: #A896C2 ; border-color: #A896C2 ;")), br(),
                  div(style = "position:absolute;right:0em;",
-                     actionButton(ns("reset_all"), "Reset all",icon("undo-alt", verify_fa = FALSE), class = "btn btn-danger"))
+                     actionButton(ns("reset_all"), "Reset all",icon("undo-alt", verify_fa = FALSE), style = "background-color: #F2A7AE  ; border-color: #F2A7AE  ;"))
              ),
              tags$h2(tags$b("Input data")), br(),
              "Use this module to select an example dataset or to upload yours.", br(), br()
+      ), br()
       ), br(),
       column(width = 12,
              fluidPage(
-               box(id= ns("box_example"), width = 12, solidHeader = TRUE, collapsible = TRUE, collapsed = FALSE, status="primary", title = actionLink(inputId = ns("exampleID"), label = tags$b("Available example datasets")),
+               box(id= ns("box_example"), width = 12, solidHeader = TRUE, collapsible = TRUE, collapsed = FALSE, status="info", title =  tags$b("Available example datasets"),
                    radioButtons(ns("example_map"), label = p("They contain the entire linkage map and QTL analysis but just a subset of individuals."), 
                                 choices = c("Potato - Atlantic x B1829-5" = "tetra_map"),
                                 selected = "tetra_map"), br(), br(), hr(),
@@ -36,30 +39,30 @@ mod_upload_ui <- function(id){
       ), br(),
       column(width = 12,
              fluidPage(
-               box(id = ns("box_map"), width = 12, solidHeader = TRUE, collapsible = TRUE, collapsed = TRUE, status="primary", title = actionLink(inputId = ns("mapID"), label = tags$b("Upload linkage map files")),
+               box(id = ns("box_map"), width = 12, solidHeader = TRUE, collapsible = TRUE, collapsed = TRUE, status="info", title = tags$b("Upload linkage map files"),
                    div(style = "position:absolute;right:1em;",
-                       actionBttn(ns("reset_map"), style = "jelly", color = "royal",  size = "sm", label = "reset", icon = icon("undo-alt", verify_fa = FALSE))
+                       actionButton(ns("reset_map"), "Reset",icon("undo-alt", verify_fa = FALSE), style = "background-color: #F2A7AE  ; border-color: #F2A7AE  ;")
                    ), br(), br(), 
-                   box(id = ns("box_mappoly"),width = 12, solidHeader = FALSE, collapsible = TRUE, collapsed = TRUE, status="primary",  title = actionLink(inputId = ns("mappolyID"), label = tags$b("Upload MAPpoly output")),
+                   box(id = ns("box_mappoly"),width = 12, solidHeader = FALSE, collapsible = TRUE, collapsed = TRUE, status="primary",  title = tags$b("Upload MAPpoly output"),
                        tags$p("Access further information about how to build a linkage maps with MAPpoly ", 
                               tags$a(href= "https://rpubs.com/mmollin/tetra_mappoly_vignette","here")), br(),
                        tags$p("Access a example code of how to obtain these inputs using MAPpoly functions ", 
                               tags$a(href= "https://cristianetaniguti.github.io/viewpoly_vignettes/VIEWpoly_tutorial.html#Upload_linkage_map_files","here")),
                        hr(),
                        div(style = "position:absolute;right:1em;",
-                           actionBttn(ns("submit_mappoly"), style = "jelly", color = "royal",  size = "sm", label = "submit MAPpoly", icon = icon("share-square", verify_fa = FALSE))
+                          actionButton(ns("submit_mappoly"), "Submit MAPpoly", icon("share-square", verify_fa = FALSE), style = "background-color: #B5DDE8 ; border-color: #B5DDE8 ;") 
                        ), br(), br(),
                        tags$p("Object of class `mappoly.map`."), 
                        fileInput(ns("mappoly_in"), label = h6("File: my_mappoly_list.RData"), multiple = F)
                    ),
-                   box(id = ns("box_polymap"),width = 12, solidHeader = FALSE, collapsible = TRUE, collapsed = TRUE,  status="primary",title = actionLink(inputId = ns("polymapID"), label = tags$b("Upload polymapR output")),
+                   box(id = ns("box_polymap"),width = 12, solidHeader = FALSE, collapsible = TRUE, collapsed = TRUE,  status="primary",title =  tags$b("Upload polymapR output"),
                        tags$p("Access further information about how to build a linkage maps with polymapR ", 
                               tags$a(href= "https://cran.r-project.org/web/packages/polymapR/vignettes/Vignette_polymapR.html","here")), br(),
                        tags$p("Access a example code of how to obtain these inputs using polymapR functions ", 
                               tags$a(href= "https://cristianetaniguti.github.io/viewpoly_vignettes/VIEWpoly_tutorial.html#Upload_linkage_map_files","here")),
                        hr(),
                        div(style = "position:absolute;right:1em;",
-                           actionBttn(ns("submit_polymapR"), style = "jelly", color = "royal",  size = "sm", label = "submit polymapR", icon = icon("share-square", verify_fa = FALSE))
+                          actionButton(ns("submit_polymapR"), "Submit polymapR", icon("share-square", verify_fa = FALSE), style = "background-color: #B5DDE8 ; border-color: #B5DDE8 ;") 
                        ), br(), br(),
                        p("Indicates whether the genotype input is discrete or probabilistic."),
                        prettyRadioButtons(
@@ -84,7 +87,7 @@ mod_upload_ui <- function(id){
                        fileInput(ns("polymapR.dataset"), label = h6("File: polymapR.dataset.RData"), multiple = F),
                        fileInput(ns("polymapR.map"), label = h6("File: polymapR.map.RData"), multiple = F)
                    ),
-                   box(id = ns("box_onemap"),width = 12, solidHeader = FALSE, collapsible = TRUE, collapsed = TRUE, status="primary",  title = actionLink(inputId = ns("onemapID"), label = tags$b("Upload OneMap output")),
+                   box(id = ns("box_onemap"),width = 12, solidHeader = FALSE, collapsible = TRUE, collapsed = TRUE, status="primary",  title =  tags$b("Upload OneMap output"),
                        tags$p("Access further information about how to build a linkage maps for diploid outcrossing populations with OneMap ", 
                               tags$a(href= "https://cristianetaniguti.github.io/Tutorials/onemap/vignettes_highres/Outcrossing_Populations.html","here")), br(),
                        tags$p("Access further information about how to build a linkage maps for diploid inbred based populations with OneMap ", 
@@ -93,14 +96,14 @@ mod_upload_ui <- function(id){
                               tags$a(href= "https://cristianetaniguti.github.io/viewpoly_vignettes/VIEWpoly_tutorial.html#Upload_linkage_map_files","here")),
                        hr(),
                        div(style = "position:absolute;right:1em;",
-                           actionBttn(ns("submit_onemap"), style = "jelly", color = "royal",  size = "sm", label = "submit OneMap", icon = icon("share-square", verify_fa = FALSE))
+                           actionButton(ns("submit_onemap"), "Submit OneMap", icon("share-square", verify_fa = FALSE), style = "background-color: #B5DDE8 ; border-color: #B5DDE8 ;") 
                        ), br(), br(),
                        tags$p("Object of class `viewmap`."), 
                        fileInput(ns("onemap_in"), label = h6("File: my_onemap_map.RData"), multiple = F)
                    ),
-                   box(id = ns("box_mapst"), width = 12, solidHeader = FALSE, collapsible = TRUE, collapsed = TRUE, status="primary",title = actionLink(inputId = ns("mapstID"), label = tags$b("Upload linkage map files with standard format (.csv, .tsv or .tsv.gz)")),
+                   box(id = ns("box_mapst"), width = 12, solidHeader = FALSE, collapsible = TRUE, collapsed = TRUE, status="primary",title = tags$b("Upload linkage map files with standard format (.csv, .tsv or .tsv.gz)"),
                        div(style = "position:absolute;right:1em;",
-                           actionBttn(ns("submit_map_custom"), style = "jelly", color = "royal",  size = "sm", label = "submit map custom", icon = icon("share-square", verify_fa = FALSE))
+                           actionButton(ns("submit_map_custom"), "Submit map custom", icon("share-square", verify_fa = FALSE), style = "background-color: #B5DDE8 ; border-color: #B5DDE8 ;") 
                        ), br(), br(),
                        fileInput(ns("dosages"), label = h6("File: dosages.tsv"), multiple = F),
                        fileInput(ns("genetic_map"), label = h6("File: genetic_map.tsv"), multiple = F),
@@ -120,13 +123,13 @@ mod_upload_ui <- function(id){
       ), br(),
       column(width = 12,
              fluidPage(
-               box(id = ns("box_qtl"),width = 12, solidHeader = TRUE, collapsible = TRUE, collapsed = TRUE, status="primary", title = actionLink(inputId = ns("qtlID"), label = tags$b("Upload QTL analysis files")),
+               box(id = ns("box_qtl"),width = 12, solidHeader = TRUE, collapsible = TRUE, collapsed = TRUE, status="info", title =  tags$b("Upload QTL analysis files"),
                    div(style = "position:absolute;right:1em;",
-                       actionBttn(ns("reset_qtl"), style = "jelly", color = "royal",  size = "sm", label = "reset", icon = icon("undo-alt", verify_fa = FALSE))
+                       actionButton(ns("reset_qtl"), "Reset",icon("undo-alt", verify_fa = FALSE), style = "background-color: #F2A7AE  ; border-color: #F2A7AE  ;")
                    ), br(), br(), 
-                   box(id= ns("box_qtlpoly"), width = 12, solidHeader = FALSE, collapsible = TRUE, collapsed = TRUE,  status="primary", title = actionLink(inputId = ns("qtlpolyID"), label = tags$b("Upload QTLpoly output")),
+                   box(id= ns("box_qtlpoly"), width = 12, solidHeader = FALSE, collapsible = TRUE, collapsed = TRUE,  status="info", title = tags$b("Upload QTLpoly output"),
                        div(style = "position:absolute;right:1em;",
-                           actionBttn(ns("submit_qtlpoly"), style = "jelly", color = "royal",  size = "sm", label = "submit QTLpoly", icon = icon("share-square", verify_fa = FALSE))
+                           actionButton(ns("submit_qtlpoly"), "Submit QTLpoly", icon("share-square", verify_fa = FALSE), style = "background-color: #B5DDE8 ; border-color: #B5DDE8 ;") 
                        ), br(), br(),
                        tags$p("Access further information about how to perform QTL analysis with QTLpoly ", 
                               tags$a(href= "https://guilherme-pereira.github.io/QTLpoly/1-tutorial","here")), br(),
@@ -138,9 +141,9 @@ mod_upload_ui <- function(id){
                        fileInput(ns("qtlpoly_est.effects"), label = h6("File: QTLpoly_est.effects.RData", br(), br(),"Object of class: qtlpoly.effects"), multiple = F),
                        fileInput(ns("qtlpoly_fitted.mod"), label = h6("File: QTLpoly_fitted.mod.RData", br(), br(), "Object of class: qtlpoly.fitted"), multiple = F)
                    ),
-                   box(id = ns("box_diaqtl"), width = 12, solidHeader = FALSE, collapsible = TRUE, collapsed = TRUE,  status="primary", title = actionLink(inputId = ns("diaqtlID"), label = tags$b("Upload diaQTL output")),
+                   box(id = ns("box_diaqtl"), width = 12, solidHeader = FALSE, collapsible = TRUE, collapsed = TRUE,  status="info", title = tags$b("Upload diaQTL output"),
                        div(style = "position:absolute;right:1em;",
-                           actionBttn(ns("submit_diaQTL"), style = "jelly", color = "royal",  size = "sm", label = "submit diaQTL", icon = icon("share-square", verify_fa = FALSE))
+                           actionButton(ns("submit_diaQTL"), "Submit diaQTL", icon("share-square", verify_fa = FALSE), style = "background-color: #B5DDE8 ; border-color: #B5DDE8 ;") 
                        ), br(), br(),
                        tags$p("Access further information about how to perform QTL analysis with diaQTL ", 
                               tags$a(href= "https://jendelman.github.io/diaQTL/diaQTL_Vignette.html","here")), br(),
@@ -152,9 +155,9 @@ mod_upload_ui <- function(id){
                        fileInput(ns("diaQTL_BayesCI"), label = h6("File: diaQTL_BayesCI_list.RData"), multiple = F),
                        fileInput(ns("diaQTL_fitQTL"), label = h6("File: diaQTL_fitQTL_list.RData"), multiple = F)
                    ),
-                   box(id = ns("box_polyqtl"),width = 12, solidHeader = FALSE, collapsible = TRUE, collapsed = TRUE,  status="primary", title = actionLink(inputId = ns("polyqtlID"), label = tags$b("Upload polyqtlR output")),
+                   box(id = ns("box_polyqtl"),width = 12, solidHeader = FALSE, collapsible = TRUE, collapsed = TRUE,  status="info", title =  tags$b("Upload polyqtlR output"),
                        div(style = "position:absolute;right:1em;",
-                           actionBttn(ns("submit_polyqtlR"), style = "jelly", color = "royal",  size = "sm", label = "submit polyqtlR", icon = icon("share-square", verify_fa = FALSE))
+                          actionButton(ns("submit_polyqtlR"), "Submit polyqtlR", icon("share-square", verify_fa = FALSE), style = "background-color: #B5DDE8 ; border-color: #B5DDE8 ;") 
                        ), br(), br(),
                        tags$p("Access further information about how to perform QTL analysis with polyqtlR ", 
                               tags$a(href= "https://cran.r-project.org/web/packages/polyqtlR/vignettes/polyqtlR_vignette.html","here")), br(),
@@ -165,9 +168,9 @@ mod_upload_ui <- function(id){
                        fileInput(ns("polyqtlR_qtl_info"), label = h6("File: polyqtlR_qtl_info.RData"), multiple = F),
                        fileInput(ns("polyqtlR_QTLscan_list"), label = h6("File: polyqtlR_QTLscan_list.RData"), multiple = F)
                    ),
-                   box(id = ns("box_qtlst"),width = 12, solidHeader = FALSE, collapsible = TRUE, collapsed = TRUE, status="primary", title = actionLink(inputId = ns("qtlstID"), label = tags$b("Upload QTL analysis results with standard format (.csv, .tsv or .tsv.gz)")),
+                   box(id = ns("box_qtlst"),width = 12, solidHeader = FALSE, collapsible = TRUE, collapsed = TRUE, status="info", title = tags$b("Upload QTL analysis results with standard format (.csv, .tsv or .tsv.gz)"),
                        div(style = "position:absolute;right:1em;",
-                           actionBttn(ns("submit_qtl_custom"), style = "jelly", color = "royal",  size = "sm", label = "submit QTL custom", icon = icon("share-square", verify_fa = FALSE))
+                              actionButton(ns("submit_qtl_custom"), "Submit QTL custom", icon("share-square", verify_fa = FALSE), style = "background-color: #B5DDE8 ; border-color: #B5DDE8 ;") 
                        ), br(), br(),
                        fileInput(ns("selected_mks"), label = h6("File: selected_mks.tsv"), multiple = F),
                        fileInput(ns("qtl_info"), label = h6("File: qtl_info.tsv"), multiple = F),
@@ -194,23 +197,23 @@ mod_upload_ui <- function(id){
       ), br(),
       column(width = 12,
              fluidPage(
-               box(id = ns("box_genome"),width = 12, solidHeader = TRUE, collapsible = TRUE, collapsed = TRUE, status="primary", title = actionLink(inputId = ns("genomeID"), label = tags$b("Upload Genome Browser files")),
+               box(id = ns("box_genome"),width = 12, solidHeader = TRUE, collapsible = TRUE, collapsed = TRUE, status="info", title =  tags$b("Upload Genome Browser files"),
                    tags$p("Access further information about the files expected in this section ", 
                           tags$a(href= "https://gmod.github.io/JBrowseR/articles/creating-urls.html","here")), br(),
-                   
+                   fluidRow(
                    column(6,
                           tags$h5(tags$b("Upload genome information")),
                           box(
-                            width = NULL, background = "danger",
+                            width = NULL, background = "danger", solidHeader = FALSE, collapsible = FALSE, 
                             "Warning! The uploaded .fasta, .gff3, .vcf, .bam, .cram, .wig genome version must be the same one used to build the genetic map"
                           )
                    ), 
                    column(6,
-                          div(style = "position:absolute;right:1em;",
-                              actionBttn(ns("reset_genome"), style = "jelly", color = "royal",  size = "sm", label = "reset", icon = icon("undo-alt", verify_fa = FALSE)), br(),br(),
-                              actionBttn(ns("submit_genome"), style = "jelly", color = "royal",  size = "sm", label = "submit", icon = icon("share-square", verify_fa = FALSE)), br(),br()
+                            div(style = "text-align:right; padding-top:25px;",
+                              actionButton(ns("reset_genome"), "Reset",icon("undo-alt", verify_fa = FALSE), style = "background-color: #F2A7AE  ; border-color: #F2A7AE  ;"), br(), br(),
+                              actionButton(ns("submit_genome"), "Submit genome file", icon("share-square", verify_fa = FALSE), style = "background-color: #B5DDE8    ; border-color: #B5DDE8    ;")
                           )
-                   ), br(), br(),
+                   )), br(), br(),
                    column(12,
                           br(), 
                           tags$h5(tags$b("Upload .fasta/.fasta.gz and .fasta.fai/.fasta.gz.fai,.fasta.gz.gzi file with assembly information. Using this option, a local HTTP server will be generated.")),
@@ -248,15 +251,20 @@ mod_upload_ui <- function(id){
       ),
       column(width = 12,
              fluidPage(
-               box(id = ns("box_hidecan"),width = 12, solidHeader = TRUE, collapsible = TRUE, collapsed = TRUE, status="primary", title = actionLink(inputId = ns("hidecanID"), label = tags$b("Upload Hidecan files")),
+               box(id = ns("box_hidecan"),width = 12, solidHeader = TRUE, collapsible = TRUE, collapsed = TRUE, status="info", title = tags$b("Upload Hidecan files"),
+                   fluidRow(
+                     column(6,
                    tags$p("Access further information about the files expected in this section ", 
                           tags$a(href= "https://plantandfoodresearch.github.io/hidecan/","here")), br(),
-                   
-                   div(style = "position:absolute;right:1em;",
-                       actionBttn(ns("reset_hidecan"), style = "jelly", color = "royal",  size = "sm", label = "reset", icon = icon("undo-alt", verify_fa = FALSE)),
-                       actionBttn(ns("submit_hidecan"), style = "jelly", color = "royal",  size = "sm", label = "submit HIDECAN", icon = icon("share-square", verify_fa = FALSE))
-                   ), br(), br(), 
-                   box(id= ns("box_gwaspoly"), width = 12, solidHeader = FALSE, collapsible = TRUE, collapsed = TRUE,  status="primary", title = actionLink(inputId = ns("gwaspolyID"), label = tags$b("Upload GWAS output")),
+                     ), 
+                     column(6,
+                            div(style = "text-align:right; padding-top:25px;",
+                       actionButton(ns("reset_hidecan"), "Reset",icon("undo-alt", verify_fa = FALSE), style = "background-color: #F2A7AE ; border-color: #F2A7AE ;"), br(), br(),
+                       actionButton(ns("submit_hidecan"), "Submit HIDECAN file", icon("share-square", verify_fa = FALSE), style = "background-color: #B5DDE8 ; border-color: #B5DDE8 ;") 
+                            )
+                     )
+                  ), br(), br(),
+                   box(id= ns("box_gwaspoly"), width = 12, solidHeader = FALSE, collapsible = TRUE, collapsed = TRUE,  status="info", title = tags$b("Upload GWAS output"),
                        div(style = "position:absolute;right:1em;",
                        ), br(), br(),
                        p("Object of class GWASpoly.thresh obtained with the GWASpoly::set.threshold():"), br(),
@@ -264,7 +272,7 @@ mod_upload_ui <- function(id){
                        p("or"),
                        fileInput(ns("gwas"), label = h6("File: gwas.csv"), multiple = T)
                    ),
-                   box(id= ns("box_gwas_de"), width = 12, solidHeader = FALSE, collapsible = TRUE, collapsed = TRUE,  status="primary", title = actionLink(inputId = ns("gwasID"), label = tags$b("Upload differential expression (DE) and candidate genes (CAN) files")),
+                   box(id= ns("box_gwas_de"), width = 12, solidHeader = FALSE, collapsible = TRUE, collapsed = TRUE,  status="info", title = tags$b("Upload differential expression (DE) and candidate genes (CAN) files"),
                        div(style = "position:absolute;right:1em;",
                        ), br(), br(),
                        fileInput(ns("de"), label = h6("File: DE.csv"), multiple = T),
@@ -275,7 +283,7 @@ mod_upload_ui <- function(id){
       ),
       column(width = 12,
              fluidPage(
-               box(id = ns("box_viewpoly"),width = 12, solidHeader = TRUE, collapsible = TRUE, collapsed = TRUE, status="info", title = actionLink(inputId = ns("viewpolyID"), label = tags$b("Download VIEWpoly dataset")),
+               box(id = ns("box_viewpoly"),width = 12, solidHeader = TRUE, collapsible = TRUE, collapsed = TRUE, status="indigo", title = tags$b("Download VIEWpoly dataset"),
                    p("The uploaded data are converted to the viewpoly format. It keeps the map and the QTL information. Genome information is not stored."), br(),
                    textInput(ns("data.name"), label = p("Define the dataset name. Do not use spaces between words."), value = "dataset_name"), br(),
                    tags$head(tags$style(".butt{background-color:#add8e6; border-color: #add8e6; color: #337ab7;}")),
@@ -286,26 +294,29 @@ mod_upload_ui <- function(id){
       ),
       column(width = 12,
              fluidPage(
-               box(id = ns("box_viewpolyup"),width = 12, solidHeader = TRUE, collapsible = TRUE, collapsed = FALSE, status="info", title = actionLink(inputId = ns("viewpolyupID"), label = tags$b("Upload VIEWpoly dataset")),
-                   column(8,
-                          radioButtons(ns("viewpoly_env"), width = 500, label = "Check one of the availables datasets:", 
-                                       choices = "There is no VIEWpoly object in your R environment. Load VIEWpoly object or convert other formats below.",
-                                       selected =  "There is no VIEWpoly object in your R environment. Load VIEWpoly object or convert other formats below."), br()
+               box(id = ns("box_viewpolyup"),width = 12, solidHeader = TRUE, collapsible = TRUE, collapsed = FALSE, status="indigo", title = tags$b("Upload VIEWpoly dataset"),
+                   fluidRow(
+                     column(8,
+                            radioButtons(ns("viewpoly_env"), width = 500, label = "Check one of the availables datasets:", 
+                                         choices = "There is no VIEWpoly object in your R environment. Load VIEWpoly object or convert other formats below.",
+                                         selected =  "There is no VIEWpoly object in your R environment. Load VIEWpoly object or convert other formats below.")
+                     ),
+                     column(4,
+                            div(style = "text-align:right; padding-top:25px;",
+                              actionButton(ns("reset_viewpoly"), "Reset",icon("undo-alt", verify_fa = FALSE), style = "background-color: #F2A7AE ; border-color: #F2A7AE ;"), br(), br(),
+                              actionButton(ns("submit_viewpoly"), "Submit VIEWpoly file", icon("share-square", verify_fa = FALSE), style = "background-color: #B5DDE8 ; border-color: #B5DDE8 ;") 
+                           )
+                     )
                    ),
-                   column(4,
-                          div(style = "position:absolute;right:1em;",
-                              actionBttn(ns("reset_viewpoly"), style = "jelly", color = "royal",  size = "sm", label = "reset", icon = icon("undo-alt", verify_fa = FALSE)), br(), br(),
-                              actionBttn(ns("submit_viewpoly"), style = "jelly", color = "royal",  size = "sm", label = "submit VIEWpoly file", icon = icon("share-square", verify_fa = FALSE))
-                          )
-                   ), 
                    column(12,
-                          br(), br(), hr(),
+                          br(), hr(),
                           p("Upload VIEWpoly RData file here:"), 
                           fileInput(ns("viewpoly_input"), label = h6("File: dataset_name.RData"), multiple = F)
                    )
                )
              )
       )
+    )
     )
 }
 
@@ -318,68 +329,6 @@ mod_upload_ui <- function(id){
 #' @noRd 
 mod_upload_server <- function(input, output, session, parent_session){
   ns <- session$ns
-  
-  
-  #Collapse boxes
-  observeEvent(input$exampleID, {
-    js$collapse(ns("box_example"))
-  })
-  
-  observeEvent(input$mapID, {
-    js$collapse(ns("box_map"))
-  })
-  
-  observeEvent(input$mappolyID, {
-    js$collapse(ns("box_mappoly"))
-  })
-  
-  observeEvent(input$onemapID, {
-    js$collapse(ns("box_onemap"))
-  })
-  
-  observeEvent(input$polymapID, {
-    js$collapse(ns("box_polymap"))
-  })
-  
-  observeEvent(input$mapstID, {
-    js$collapse(ns("box_mapst"))
-  })
-  
-  observeEvent(input$qtlID, {
-    js$collapse(ns("box_qtl"))
-  })
-  
-  observeEvent(input$qtlpolyID, {
-    js$collapse(ns("box_qtlpoly"))
-  })
-  
-  observeEvent(input$diaqtlID, {
-    js$collapse(ns("box_diaqtl"))
-  })
-  
-  observeEvent(input$polyqtlID, {
-    js$collapse(ns("box_polyqtl"))
-  })
-  
-  observeEvent(input$qtlstID, {
-    js$collapse(ns("box_qtlst"))
-  })
-  
-  observeEvent(input$genomeID, {
-    js$collapse(ns("box_genome"))
-  })
-  
-  observeEvent(input$hidecanID, {
-    js$collapse(ns("box_hidecan"))
-  })
-  
-  observeEvent(input$viewpolyID, {
-    js$collapse(ns("box_viewpoly"))
-  })
-  
-  observeEvent(input$viewpolyupID, {
-    js$collapse(ns("box_viewpolyup"))
-  })
   
   # Check environment
   observe({
@@ -439,13 +388,13 @@ mod_upload_server <- function(input, output, session, parent_session){
   )
   
   observeEvent(input$goQTL, {
-    updateTabsetPanel(session = parent_session, inputId = "viewpoly",
+    updateTabsetPanel(session = parent_session, inputId = "MainMenu",
                       selected = "qtl")
   })
   
   observeEvent(input$goAbout, {
-    updateTabsetPanel(session = parent_session, inputId = "viewpoly",
-                      selected = "about")
+    updateTabsetPanel(session = parent_session, inputId = "MainMenu",
+                      selected = "welcome")
   })
   
   # Reset buttons

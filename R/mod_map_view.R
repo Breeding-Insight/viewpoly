@@ -12,6 +12,8 @@
 #'
 mod_map_view_ui <- function(id){
   ns <- NS(id)
+    tagList(
+
   fluidPage(
     verticalLayout(
       fluidRow(
@@ -155,6 +157,7 @@ mod_map_view_ui <- function(id){
         )
       )
     )
+    )
 }
 
 #' map_view Server Functions
@@ -188,12 +191,12 @@ mod_map_view_server <- function(input, output, session,
   })
   
   observeEvent(input$goGenes, {
-    updateTabsetPanel(session = parent_session, inputId = "viewpoly",
+    updateTabsetPanel(session = parent_session, inputId = "MainMenu",
                       selected = "genes")
   })
   
   observeEvent(input$goHidecan, {
-    updateTabsetPanel(session = parent_session, inputId = "viewpoly",
+    updateTabsetPanel(session = parent_session, inputId = "MainMenu",
                       selected = "hidecan")
   })
   

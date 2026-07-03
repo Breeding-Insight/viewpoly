@@ -18,13 +18,13 @@ mod_Home_ui <- function(id){
                fluidRow(
                  column(width = 6,
                         box(
-                          title = "YourAppName", status = "info", solidHeader = FALSE, width = 12, collapsible = FALSE,
+                          title = "ViewPoly", status = "info", solidHeader = FALSE, width = 12, collapsible = FALSE,
                           HTML(
                             "<div style='text-align: center; margin-top: 10px; margin-bottom: 10px;'>
-                                <img src='www/placeholder_logo.png' alt='replace_YourAppName_logo' style='width: 120px; height: 140px;'>
+                                <img src='www/viewpoly_logo.png' alt='ViewPoly logo' style='width: 120px; height: 140px;'>
                               </div>",
                             paste0(
-                              "<p><b>About YourAppName.</b> Describe your app here! </p>",
+                              "<p><b>About ViewPoly.</b> Describe your app here! </p>",
                               "</ul>"
                             )
                           ),
@@ -86,11 +86,11 @@ mod_Home_ui <- function(id){
                  style = "text-decoration: none; color: inherit;"  # Optional: removes underline and retains original color
                ),
                a(
-                 href = "file:///Users/cht47/Documents/github/YourAppName/doc/YourAppName.html",  # Replace with your desired URL
+                 href = "https://cristianetaniguti.github.io/viewpoly_vignettes/VIEWpoly_tutorial.html",  # Replace with your desired URL
                  target = "_blank",  # Optional: opens the link in a new tab
                  valueBox(
                    value = NULL,
-                   subtitle = "YourAppName Tutorial",
+                   subtitle = "ViewPoly Tutorial",
                    icon = icon("compass"),
                    color = "info",
                    gradient = TRUE,

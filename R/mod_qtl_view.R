@@ -13,6 +13,8 @@
 #' @importFrom shiny NS tagList 
 mod_qtl_view_ui <- function(id){
   ns <- NS(id)
+    tagList(
+
     fluidPage(
       verticalLayout(
         fluidRow(
@@ -219,6 +221,7 @@ mod_qtl_view_ui <- function(id){
         )
       )
     )
+    )
 }
 
 #' qtl_view Server Functions
@@ -293,12 +296,12 @@ mod_qtl_view_server <- function(input, output, session,
   })
   
   observeEvent(input$goGenes, {
-    updateTabsetPanel(session = parent_session, inputId = "viewpoly",
+    updateTabsetPanel(session = parent_session, inputId = "MainMenu",
                       selected = "genes")
   })
   
   observeEvent(input$goUploads, {
-    updateTabsetPanel(session = parent_session, inputId = "viewpoly",
+    updateTabsetPanel(session = parent_session, inputId = "MainMenu",
                       selected = "upload")
   })
   

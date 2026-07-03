@@ -28,7 +28,7 @@ app_ui <- function(request) {
       skin = "black",
       bs4DashNavbar(
         title = tagList(
-          tags$img(src = 'www/logo.png', height = '40', width = '35')
+          tags$img(src = 'www/viewpoly_logo.png', height = '40', width = '35')
         ),
         rightUi = tags$li(
           class = "dropdown",
@@ -93,6 +93,9 @@ app_ui <- function(request) {
             ),
             a(
               img(src = "www/cornell_seal_simple_web_b31b1b.png", height = "45px")
+            ),
+            a(
+              img(src = "www/tools_logo.png", height = "70px")
             )
           )
         ),
