@@ -7,7 +7,7 @@
 #' @noRd
 #'
 #' @importFrom shiny NS tagList fluidPage fluidRow column HTML a uiOutput renderUI
-#' @importFrom bs4Dash box valueBox icon
+#' @importFrom bs4Dash box valueBox 
 #' 
 #'
 mod_Home_ui <- function(id){
@@ -24,8 +24,22 @@ mod_Home_ui <- function(id){
                                 <img src='www/viewpoly_logo.png' alt='ViewPoly logo' style='width: 120px; height: 140px;'>
                               </div>",
                             paste0(
-                              "<p><b>About ViewPoly.</b> Describe your app here! </p>",
-                              "</ul>"
+                              "<p><b>About VIEWpoly</b></p>",
+                              "<p>VIEWpoly is a shiny app and R package for visualizing and exploring results from ",
+                              "<a href='https://www.polyploids.org/' target='_blank'>Tools for Polyploids</a> ",
+                              "using an interactive graphical user interface. The package allows users to directly upload output files from ",
+                              "<a href='https://cran.r-project.org/web/packages/polymapR/index.html' target='_blank'>polymapR</a>, ",
+                              "<a href='https://cran.r-project.org/web/packages/mappoly/index.html' target='_blank'>MAPpoly</a>, ",
+                              "<a href='https://cran.r-project.org/web/packages/polyqtlR/index.html' target='_blank'>polyqtlR</a>, ",
+                              "<a href='https://cran.r-project.org/web/packages/qtlpoly/index.html' target='_blank'>QTLpoly</a>, ",
+                              "<a href='https://github.com/jendelman/diaQTL' target='_blank'>diaQTL</a>, ",
+                              "<a href='https://github.com/jendelman/GWASpoly' target='_blank'>GWASpoly</a>, ",
+                              "<a href='https://cran.r-project.org/web/packages/hidecan/index.html' target='_blank'>HIDECAN</a>, ",
+                              "and genomic assembly, variants, annotation and alignment files.</p>",
+                              "<p>VIEWpoly graphically displays the QTL profiles, positions, alleles estimated effects, progeny individuals containing specific haplotypes and their breeding values. ",
+                              "It is also possible to access marker dosage and parental phase from the linkage map. If genomic information is available, the corresponding QTL positions are interactively explored using JBrowseR interface, allowing the search for candidate genes. ",
+                              "It also provides features to download specific information into comprehensive tables and images for further analysis and presentation.</p>",
+                              "<p>VIEWpoly was developed during the <b>Tools for Polyploid Project</b> by researchers at <b>Texas A&M University</b> and <b>North Carolina State University</b> and is now updated and maintained by <b>Breeding Insight</b>.</p>"
                             )
                           ),
                           style = "overflow-y: auto; height: 500px"

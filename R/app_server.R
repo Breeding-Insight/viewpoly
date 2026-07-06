@@ -3,6 +3,9 @@
 #' @param input,output,session Internal parameters for {shiny}. 
 #'     DO NOT REMOVE.
 #' @import shiny
+#' @importFrom utils capture.output sessionInfo
+#' @importFrom httr GET status_code content
+#' @importFrom curl new_handle curl_fetch_memory
 #' @noRd
 app_server <- function( input, output, session ) {
   # Your application server logic
