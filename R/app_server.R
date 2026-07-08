@@ -120,26 +120,26 @@ app_server <- function( input, output, session ) {
     # Get the installed version
     installed_version <- as.character(packageVersion(package_name))
     
-    # Get the latest version from GitHub (can be tag version or latest commit)
-    latest_commit <- get_latest_github_commit(repo_name, repo_owner)
-    
-    # Compare versions and prepare message
-    if (latest_commit > installed_version) {
-      update_status <- "A new version is available. Please update your package."
-      # Prepare styled HTML text for the modal
+    # Get the latest version from GitHub (release tag)
+    latest_version <- get_latest_github_commit(repo_name, repo_owner)
+
+    if (is.null(latest_version) || !nzchar(latest_version)) {
       message_html <- paste(
         "Installed version:", installed_version, "<br>",
-        #"Latest version commit SHA:", latest_commit, "<br>",
+        "Unable to check for updates right now (GitHub API request failed)."
+      )
+    } else if (utils::compareVersion(latest_version, installed_version) == 1) {
+      message_html <- paste(
+        "Installed version:", installed_version, "<br>",
+        "Latest version:", latest_version, "<br>",
         "<span>A new version is available on GitHub!</span><br>",
         "<span style='color: red;'>Please update your package.</span>"
       )
     } else {
-      update_status <- "Your package is up-to-date!"
-      # Prepare non-styled text for no update needed
       message_html <- paste(
         "Installed version:", installed_version, "<br>",
-        #"Latest version commit SHA:", latest_commit, "<br>",
-        update_status
+        "Latest version:", latest_version, "<br>",
+        "Your package is up-to-date!"
       )
     }
     
