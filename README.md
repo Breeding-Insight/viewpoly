@@ -3,7 +3,7 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/viewpoly)](https://cran.r-project.org/package=viewpoly)
 [![R-universe PolyVerse Status Badge](https://polyploids.r-universe.dev/badges/viewpoly)](https://polyploids.r-universe.dev/badges/viewpoly)
-[![codecov](https://codecov.io/github/mmollina/viewpoly/branch/main/graphs/badge.svg)](https://codecov.io/github/mmollina/viewpoly)
+[![codecov](https://codecov.io/github/Breeding-Insight/viewpoly/branch/main/graphs/badge.svg)](https://codecov.io/github/Breeding-Insight/viewpoly)
 [![CRAN_monthly_downloads](https://cranlogs.r-pkg.org/badges/viewpoly)](https://cranlogs.r-pkg.org/badges/viewpoly)
 [![DOI](https://joss.theoj.org/papers/10.21105/joss.04242/status.svg)](https://doi.org/10.21105/joss.04242)
 <!-- badges: end -->
@@ -12,6 +12,8 @@
 
 `VIEWpoly` is a shiny app and R package for visualizing and exploring results from [polyploid computational tools](https://www.polyploids.org/) using an interactive graphical user interface. The package allows users to directly upload output files from [polymapR](https://CRAN.R-project.org/package=polymapR), [MAPpoly](https://CRAN.R-project.org/package=mappoly) , [OneMap](https://github.com/Cristianetaniguti/onemap), [polyqtlR](https://CRAN.R-project.org/package=polyqtlR), [QTLpoly](https://CRAN.R-project.org/package=qtlpoly), 
 [diaQTL](https://github.com/jendelman/diaQTL), [GWASpoly](https://github.com/jendelman/GWASpoly), [HIDECAN](https://cran.r-project.org/web/packages/hidecan/index.html), and genomic assembly, variants, annotation and alignment files. VIEWpoly uses [shiny](https://CRAN.R-project.org/package=shiny), [golem](https://CRAN.R-project.org/package=golem), [ggplot2](https://CRAN.R-project.org/package=ggplot2), [plotly](https://CRAN.R-project.org/package=plotly), and [JBrowseR]( https://CRAN.R-project.org/package=JBrowseR) libraries to graphically display the QTL profiles, positions, alleles estimated effects, progeny individuals containing specific haplotypes and their breeding values. It is also possible to access marker dosage and parental phase from the linkage map. If genomic information is available, the corresponding QTL positions are interactively explored using JBrowseR interface, allowing the search for candidate genes. It also provides features to download specific information into comprehensive tables and images for further analysis and presentation.
+
+VIEWpoly was developed during the <b>Tools for Polyploid Project</b> by researchers at <b>Texas A&M University</b> and <b>North Carolina State University</b> and is now updated and maintained by <b>Breeding Insight</b>.
 
 ### Quick Start
 
@@ -34,7 +36,7 @@ If you want to use the latest development version, go ahead and install `VIEWpol
 
 ```{r}
 # install.packages("devtools")
-devtools::install_github("mmollina/viewpoly")
+devtools::install_github("Breeding-Insight/viewpoly")
 viewpoly::run_app()
 ```
 
@@ -50,6 +52,17 @@ docker run --rm -e USERID=$(id -u) -e GROUPID=$(id -g) -p 8085:80 -e DISABLE_AUT
 ```
 
 This will make the container available in port 8085 (choose other if you prefer). After, you just need to go to your favorite browser and search for <your_localhost>:8085 (example: 127.0.0.1:8085). That is it! Everything you need is there.
+
+* From Breedverse
+
+The advantage of using this method is that it also give you a portfolio of other tools developed/maintained by Breeding-Insight.
+
+```{r}
+devtools::install_github("Breeding-Insight/breedverse")
+breedverse::run_app()
+```
+
+Go to `Install Modules` and search for VIEWpoly installation button. Once the installation finish, restart the app to access its module on the left side menu.
 
 ### Input data
 
@@ -104,4 +117,7 @@ Taniguti, C. H.; Taniguti, L. M.; Amadeu, R. R.; Lau, J.; de Siqueira Gesteira, 
 
 ### Acknowledgment
 
-VIEWpoly project is supported by the USDA, National Institute of Food and Agriculture (NIFA), Specialty Crop Research Initiative (SCRI) project [‘‘Tools for Genomics-Assisted Breeding in Polyploids: Development of a Community Resource’’](https://www.polyploids.org/)  and by the Bill & Melinda Gates Foundation under the Genetic Advances and [Innovative Seed Systems for Sweetpotato project (SweetGAINS)](https://cgspace.cgiar.org/handle/10568/106838).
+VIEWpoly before version 1.0.0 was supported by the USDA, National Institute of Food and Agriculture (NIFA), Specialty Crop Research Initiative (SCRI) project [‘‘Tools for Genomics-Assisted Breeding in Polyploids: Development of a Community Resource’’](https://www.polyploids.org/)  and by the Bill & Melinda Gates Foundation under the Genetic Advances and [Innovative Seed Systems for Sweetpotato project (SweetGAINS)](https://cgspace.cgiar.org/handle/10568/106838).
+
+VIEWpoly versions 1.0.0 and above is supported by [Breeding-Insight](https://breedinginsight.org). Funded by USDA-ARS and housed at University of Florida (UF/IFAS).
+(Formerly at Cornell University.) Breeding Insight and UF/IFAS are Equal Opportunity Institutions.
