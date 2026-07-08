@@ -290,7 +290,7 @@ mod_hidecan_view_server <- function(input, output, session,
   })
 
   observe({
-    if (!is.null(hidecan_data()) & input$width_hidecan > 1 & input$height_hidecan > 1 & input$dpi_hidecan > 1) {
+    if (!is.null(hidecan_data()) && isTRUE(input$width_hidecan > 1) && isTRUE(input$height_hidecan > 1) && isTRUE(input$dpi_hidecan > 1)) {
       Sys.sleep(1)
       # enable the download button
       shinyjs::enable("bn_download")
@@ -306,6 +306,9 @@ mod_hidecan_view_server <- function(input, output, session,
   })
 
   hidecan_data <- reactive({
+    req(loadHidecan())
+    # Guard against uninitialized slider inputs when tab hasn't been rendered yet
+    req(length(input$score_thr_gwas) > 0, length(input$score_thr_de) > 0)
     if (!is.null(loadHidecan()[["GWASpoly"]])) {
       x <- loadHidecan()[["GWASpoly"]]$gwas_data_thr_list
     } else {
@@ -419,6 +422,7 @@ mod_hidecan_view_server <- function(input, output, session,
   }
 
   observe({
+    req(hidecan_data())
     updateTextInput(
       inputId = "data_names",
       label = paste0(
@@ -566,7 +570,8 @@ mod_hidecan_view_server <- function(input, output, session,
   }
 
   observe({
-    if (!is.null(hidecan_data()) & input$width_hidecan > 1 & input$height_hidecan > 1 & input$dpi_hidecan > 1) {
+    req(hidecan_data())
+    if (!is.null(hidecan_data()) && isTRUE(input$width_hidecan > 1) && isTRUE(input$height_hidecan > 1) && isTRUE(input$dpi_hidecan > 1)) {
       Sys.sleep(1)
       # enable the download button
       shinyjs::enable("bn_download")

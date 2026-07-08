@@ -896,6 +896,7 @@ mod_upload_server <- function(input, output, session, parent_session) {
       is.null(input$viewpoly_env)) {
       withProgress(message = "Working:", value = 0, {
         incProgress(0.5, detail = paste("Uploading example map data..."))
+        req(input$example_map)
         prepare_examples(input$example_map)
       })
     } else {
@@ -1211,15 +1212,17 @@ mod_upload_server <- function(input, output, session, parent_session) {
   })
 
   loadMap <- reactive({
-    if (is.null(loadExample()) &
-      is.null(loadMap_custom()) &
-      is.null(loadMap_mappoly()) &
-      is.null(loadMap_onemap()) &
-      is.null(loadMap_polymapR()) &
-      is.null(loadViewpoly())) {
-      warning("Select one of the options in `upload` session")
-      return(NULL)
-    } else if (!is.null(loadViewpoly())) {
+
+    req(
+      !is.null(loadExample()) |
+      !is.null(loadMap_custom()) |
+      !is.null(loadMap_mappoly()) |
+      !is.null(loadMap_onemap()) |
+      !is.null(loadMap_polymapR()) |
+      !is.null(loadViewpoly())
+    )
+    
+    if (!is.null(loadViewpoly())) {
       return(loadViewpoly()$map)
     } else if (!is.null(loadMap_custom())) {
       return(loadMap_custom())
@@ -1235,15 +1238,16 @@ mod_upload_server <- function(input, output, session, parent_session) {
   })
 
   loadQTL <- reactive({
-    if (is.null(loadExample()) &
-      is.null(loadQTL_custom()) &
-      is.null(loadQTL_qtlpoly()) &
-      is.null(loadQTL_diaQTL()) &
-      is.null(loadQTL_polyqtlR()) &
-      is.null(loadViewpoly())) {
-      warning("Select one of the options in `upload` session")
-      return(NULL)
-    } else if (!is.null(loadViewpoly())) {
+    req(
+      !is.null(loadExample()) |
+      !is.null(loadQTL_custom()) |
+      !is.null(loadQTL_qtlpoly()) |
+      !is.null(loadQTL_diaQTL()) |
+      !is.null(loadQTL_polyqtlR()) |
+      !is.null(loadViewpoly())
+    )
+    
+    if (!is.null(loadViewpoly())) {
       return(loadViewpoly()$qtl)
     } else if (!is.null(loadQTL_custom())) {
       return(loadQTL_custom())

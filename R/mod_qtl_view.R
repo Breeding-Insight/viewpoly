@@ -167,7 +167,7 @@ mod_qtl_view_ui <- function(id) {
               hr(),
               uiOutput(ns("plot.ui"))
             )
-          ), 
+          ),
           box(
             id = ns("box_haplo"), width = 12, solidHeader = FALSE, collapsible = TRUE, collapsed = TRUE, status = "primary", title = "Progeny haplotypes",
             column(
@@ -251,7 +251,7 @@ mod_qtl_view_ui <- function(id) {
               div(
                 style = "border: 2px solid black; border-radius: 3px; padding: 15px; margin: 10px 0;",
                 "* Select QTL/s (triangle/s at the bottom of QTL profile graphic)"
-              ), 
+              ),
             ),
             column(
               12,
@@ -263,8 +263,9 @@ mod_qtl_view_ui <- function(id) {
               fluidRow(
                 column(
                   3,
-                  div(style = "text-align:center;",
-                      downloadButton(ns("bn_download_breeding"), "Download", class = "butt")
+                  div(
+                    style = "text-align:center;",
+                    downloadButton(ns("bn_download_breeding"), "Download", class = "butt")
                   )
                 ),
                 column(
@@ -273,7 +274,7 @@ mod_qtl_view_ui <- function(id) {
                 )
               )
             )
-          ), 
+          ),
           box(
             id = ns("box_summary"), width = 12, solidHeader = FALSE, collapsible = TRUE, collapsed = TRUE, status = "primary", title = "QTL summary",
             column(
@@ -281,7 +282,7 @@ mod_qtl_view_ui <- function(id) {
               div(
                 style = "border: 2px solid black; border-radius: 3px; padding: 15px; margin: 10px 0;",
                 "* Select QTL/s (triangle/s at the bottom of QTL profile graphic)"
-              ), 
+              ),
             ),
             column(
               12,
@@ -293,8 +294,9 @@ mod_qtl_view_ui <- function(id) {
               fluidRow(
                 column(
                   3,
-                  div(style = "text-align:center;",
-                      downloadButton(ns("bn_download_summary"), "Download", class = "butt")
+                  div(
+                    style = "text-align:center;",
+                    downloadButton(ns("bn_download_summary"), "Download", class = "butt")
                   )
                 ),
                 column(
@@ -451,6 +453,7 @@ mod_qtl_view_server <- function(input, output, session,
   output$plot_qtl <- renderPlot({
     withProgress(message = "Working:", value = 0, {
       incProgress(0.3, detail = paste("building graphic..."))
+      req(qtl.data())
       only_plot_profile(pl.in = qtl.data())
     })
   })
@@ -853,7 +856,7 @@ mod_qtl_view_server <- function(input, output, session,
   }
 
   observe({
-    if (input$haplo_submit & length(grep("Trait", input$haplo)) > 0 & !is.null(input$plot_brush) & input$height_haplo > 1 & input$width_haplo > 1 & input$dpi_haplo > 1) {
+    if (isTRUE(input$haplo_submit) && length(grep("Trait", input$haplo)) > 0 && !is.null(input$plot_brush) && isTRUE(input$height_haplo > 1) && isTRUE(input$width_haplo > 1) && isTRUE(input$dpi_haplo > 1)) {
       Sys.sleep(1)
       # enable the download button
       shinyjs::enable("bn_download_haplo")
@@ -866,12 +869,13 @@ mod_qtl_view_server <- function(input, output, session,
   output$bn_download_haplo <- downloadHandler(
     filename = fn_downloadname_haplo,
     content = function(file) {
+      req(input$haplo_submit)
       fn_download_haplo()
       file.copy(fn_downloadname_haplo(), file, overwrite = T)
       file.remove(fn_downloadname_haplo())
     }
   )
-  
+
   # Reactive data for QTL summary table
   qtl_summary_data <- reactive({
     validate(
@@ -893,7 +897,7 @@ mod_qtl_view_server <- function(input, output, session,
     }
     dframe
   })
-  
+
   # Reactive data for breeding values table
   breeding_values_data <- reactive({
     validate(
@@ -914,13 +918,14 @@ mod_qtl_view_server <- function(input, output, session,
     rownames(dt) <- NULL
     dt
   })
-  
+
   # Download handler for QTL summary
   output$bn_download_summary <- downloadHandler(
     filename = function() {
       ext <- switch(input$format_summary,
-                   "csv" = ".csv",
-                   "tsv" = ".tsv")
+        "csv" = ".csv",
+        "tsv" = ".tsv"
+      )
       paste0("qtl_summary_", format(Sys.time(), "%Y%m%d_%H%M%S"), ext)
     },
     content = function(file) {
@@ -932,13 +937,14 @@ mod_qtl_view_server <- function(input, output, session,
       }
     }
   )
-  
+
   # Download handler for breeding values
   output$bn_download_breeding <- downloadHandler(
     filename = function() {
       ext <- switch(input$format_breeding,
-                   "csv" = ".csv",
-                   "tsv" = ".tsv")
+        "csv" = ".csv",
+        "tsv" = ".tsv"
+      )
       paste0("breeding_values_", format(Sys.time(), "%Y%m%d_%H%M%S"), ext)
     },
     content = function(file) {
