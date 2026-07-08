@@ -133,6 +133,8 @@ mod_Home_ui <- function(id){
 
 #' Home Server Functions
 #'
+#' @importFrom bs4Dash box
+#' @importFrom shiny renderUI HTML
 #'
 #' @noRd
 mod_Home_server <- function(input, output, session, parent_session){
@@ -196,7 +198,6 @@ mod_Home_server <- function(input, output, session, parent_session){
                     paste0("<h4><b>", v_title, "</b></h4>"),
                     section_html)
     }
-    
     box(
       title       = "What's New",
       status      = "info",

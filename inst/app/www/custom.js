@@ -12,7 +12,15 @@ $(document).ready(function() {
   });
   // Cursor styles for card headers are handled in custom.css
 
-  // Your existing tab script
+  // Tab script - Apply to ALL tabsetPanels
+  $('.nav-tabs li.active > a').addClass('active');
+
+  $(document).on('shown.bs.tab', '.nav-tabs a[data-toggle="tab"]', function(e) {
+    $('.nav-tabs a[data-toggle="tab"]').removeClass('active');
+    $(e.target).addClass('active');
+  });
+  
+  // Legacy specific tab script (kept for backwards compatibility)
   $('#cnv_1-sample_select_tabs li.active > a').addClass('active');
 
   $(document).on('shown.bs.tab', '#cnv_1-sample_select_tabs a[data-toggle="tab"]', function(e) {

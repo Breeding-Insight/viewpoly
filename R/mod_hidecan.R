@@ -4,6 +4,7 @@
 #'
 #' @param id,input,output,session Internal parameters for {shiny}.
 #'
+#' @import shinyWidgets
 #' @importFrom shinyjs inlineCSS useShinyjs
 #' @importFrom plotly plotlyOutput
 #' @importFrom shiny NS tagList
@@ -18,12 +19,23 @@ mod_hidecan_view_ui <- function(id) {
       column(
         width = 12,
         div(
-          style = "background-color: white; padding: 15px; border: 1px solid black;", # Wrap everything in this div
+          style = "background-color: white; padding: 15px; border: 1px solid black; position: relative; min-height: 120px;", # Wrap everything in this div
           div(
-            style = "position:absolute;right:1em;",
-            div(
-              actionButton(ns("goMap"), "Go to Map", icon("arrow-circle-left", verify_fa = FALSE), style = "background-color: #A896C2 ; border-color: #A896C2 ;"),
-            ), br(),
+            style = "position:absolute;right:1em;top:10px;",
+            actionButton(ns("goMap"), "Go to Map", icon("arrow-circle-left", verify_fa = FALSE), style = "background-color: #A896C2 ; border-color: #A896C2 ;")
+          ),
+          div(
+            style = "position:absolute;right:1em;bottom:10px;display:flex;gap:3px;",
+            dropdownButton(
+              p(HTML("<b>Inputs and parameters description:</b>"), actionButton(ns("goPar"), icon("arrow-up-right-from-square", verify_fa = FALSE))), hr(),
+              p(HTML("<b>Results description:</b>"), actionButton(ns("goRes"), icon("arrow-up-right-from-square", verify_fa = FALSE))), hr(),
+              p(HTML("<b>How to cite:</b>"), actionButton(ns("goCite"), icon("arrow-up-right-from-square", verify_fa = FALSE))), hr(),
+              circle = FALSE,
+              status = "warning",
+              icon = icon("info"), width = "300px",
+              right = TRUE,
+              tooltip = tooltipOptions(title = "Click to see info!")
+            )
           ),
           tags$h2(tags$b("HIDECAN")), br(),
           "Select example file our upload your own results in `Input data` tab to visualize QTL results here", br(),
@@ -185,6 +197,7 @@ mod_hidecan_view_ui <- function(id) {
 #' @importFrom plotly ggplotly renderPlotly
 #' @importFrom dplyr `%>%`
 #' @importFrom shinyjs js
+#' @importFrom bs4Dash updatebs4TabItems updateBox
 #' @noRd
 mod_hidecan_view_server <- function(input, output, session,
                                     loadHidecan,
@@ -196,6 +209,55 @@ mod_hidecan_view_server <- function(input, output, session,
       session = parent_session, inputId = "MainMenu",
       selected = "map"
     )
+  })
+
+  # Help links
+  observeEvent(input$goPar, {
+    # change to help tab
+    updatebs4TabItems(
+      session = parent_session, inputId = "MainMenu",
+      selected = "help"
+    )
+
+    # select specific tab
+    updateTabsetPanel(
+      session = parent_session, inputId = "Hidecan_tabset",
+      selected = "Hidecan_par"
+    )
+    # expand specific box
+    updateBox(id = "Hidecan_box", action = "toggle", session = parent_session)
+  })
+
+  observeEvent(input$goRes, {
+    # change to help tab
+    updatebs4TabItems(
+      session = parent_session, inputId = "MainMenu",
+      selected = "help"
+    )
+
+    # select specific tab
+    updateTabsetPanel(
+      session = parent_session, inputId = "Hidecan_tabset",
+      selected = "Hidecan_results"
+    )
+    # expand specific box
+    updateBox(id = "Hidecan_box", action = "toggle", session = parent_session)
+  })
+
+  observeEvent(input$goCite, {
+    # change to help tab
+    updatebs4TabItems(
+      session = parent_session, inputId = "MainMenu",
+      selected = "help"
+    )
+
+    # select specific tab
+    updateTabsetPanel(
+      session = parent_session, inputId = "Hidecan_tabset",
+      selected = "Hidecan_cite"
+    )
+    # expand specific box
+    updateBox(id = "Hidecan_box", action = "toggle", session = parent_session)
   })
 
   observe({

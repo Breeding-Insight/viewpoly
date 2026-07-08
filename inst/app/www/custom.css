@@ -482,10 +482,11 @@ color: white !important;
 }
   
 
-/* ── Select Samples tabsetPanel (By Sample / By Family) */
+/* ── Select Samples tabsetPanel (By Sample / By Family) - GENERAL STYLING FOR ALL TABS */
   
 
 /* inactive tab - grey background */
+.nav-tabs > li > a:not(.active),
 #cnv_1-sample_select_tabs > li > a:not(.active) {
 padding: 7px 22px !important;
 margin-right: 6px !important;
@@ -499,6 +500,7 @@ color: #495057 !important;
   
 
 /* active tab */
+.nav-tabs > li > a.active,
 #cnv_1-sample_select_tabs > li > a.active {
 padding: 7px 22px !important;
 margin-right: 6px !important;
@@ -512,6 +514,7 @@ color: #007bff !important;
   
 
 /* hover on inactive tab */
+.nav-tabs > li > a:not(.active):hover,
 #cnv_1-sample_select_tabs > li > a:not(.active):hover {
 background-color: #d6d8db !important;
 color: #343a40 !important;

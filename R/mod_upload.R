@@ -16,16 +16,24 @@ mod_upload_ui <- function(id) {
       column(
         width = 12,
         div(
-          style = "background-color: white; padding: 15px; border: 1px solid black;", # Wrap everything in this div
+          style = "background-color: white; padding: 15px; border: 1px solid black; position: relative; min-height: 120px;", # Wrap everything in this div
           div(
-            style = "position:absolute;right:1em;",
-            div(
-              actionButton(ns("goAbout"), "Go to Home", icon("arrow-circle-left", verify_fa = FALSE), style = "background-color: #A896C2 ; border-color: #A896C2 ;"),
-              actionButton(ns("goQTL"), label = div("Go to QTL", icon("arrow-circle-right", verify_fa = FALSE)), style = "background-color: #A896C2 ; border-color: #A896C2 ;")
-            ), br(),
-            div(
-              style = "position:absolute;right:0em;",
-              actionButton(ns("reset_all"), "Reset all", icon("undo-alt", verify_fa = FALSE), style = "background-color: #F2A7AE  ; border-color: #F2A7AE  ;")
+            style = "position:absolute;right:1em;top:10px;",
+            actionButton(ns("goAbout"), "Go to Home", icon("arrow-circle-left", verify_fa = FALSE), style = "background-color: #A896C2 ; border-color: #A896C2 ;"),
+            actionButton(ns("goQTL"), label = div("Go to QTL", icon("arrow-circle-right", verify_fa = FALSE)), style = "background-color: #A896C2 ; border-color: #A896C2 ;")
+          ),
+          div(
+            style = "position:absolute;right:1em;bottom:10px;display:flex;gap:3px;",
+            actionButton(ns("reset_all"), "Reset all", icon("undo-alt", verify_fa = FALSE), style = "background-color: #F2A7AE  ; border-color: #F2A7AE  ;"),
+            dropdownButton(
+              p(HTML("<b>Inputs and parameters description:</b>"), actionButton(ns("goPar"), icon("arrow-up-right-from-square", verify_fa = FALSE))), hr(),
+              p(HTML("<b>Results description:</b>"), actionButton(ns("goRes"), icon("arrow-up-right-from-square", verify_fa = FALSE))), hr(),
+              p(HTML("<b>How to cite:</b>"), actionButton(ns("goCite"), icon("arrow-up-right-from-square", verify_fa = FALSE))), hr(),
+              circle = FALSE,
+              status = "warning",
+              icon = icon("info"), width = "300px",
+              right = TRUE,
+              tooltip = tooltipOptions(title = "Click to see info!")
             )
           ),
           tags$h2(tags$b("Input data")), br(),
@@ -420,6 +428,56 @@ mod_upload_ui <- function(id) {
 #' @noRd
 mod_upload_server <- function(input, output, session, parent_session) {
   ns <- session$ns
+
+
+  # Help links
+  observeEvent(input$goPar, {
+    # change to help tab
+    updatebs4TabItems(
+      session = parent_session, inputId = "MainMenu",
+      selected = "help"
+    )
+
+    # select specific tab
+    updateTabsetPanel(
+      session = parent_session, inputId = "Inputs_tabset",
+      selected = "Inputs_par"
+    )
+    # expand specific box
+    updateBox(id = "Inputs_box", action = "toggle", session = parent_session)
+  })
+
+  observeEvent(input$goRes, {
+    # change to help tab
+    updatebs4TabItems(
+      session = parent_session, inputId = "MainMenu",
+      selected = "help"
+    )
+
+    # select specific tab
+    updateTabsetPanel(
+      session = parent_session, inputId = "Inputs_tabset",
+      selected = "Inputs_results"
+    )
+    # expand specific box
+    updateBox(id = "Inputs_box", action = "toggle", session = parent_session)
+  })
+
+  observeEvent(input$goCite, {
+    # change to help tab
+    updatebs4TabItems(
+      session = parent_session, inputId = "MainMenu",
+      selected = "help"
+    )
+
+    # select specific tab
+    updateTabsetPanel(
+      session = parent_session, inputId = "Inputs_tabset",
+      selected = "Inputs_cite"
+    )
+    # expand specific box
+    updateBox(id = "Inputs_box", action = "toggle", session = parent_session)
+  })
 
   # Check environment
   observe({

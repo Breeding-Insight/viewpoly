@@ -13,6 +13,11 @@ app_server <- function( input, output, session ) {
   options(shiny.maxRequestSize=50000*1024^2)
   
   ## Start modules
+  # Home view
+  callModule(mod_Home_server,
+             "Home_1",
+             parent_session=session)
+  
   datas <- callModule(mod_upload_server,
                       "upload_ui_1", 
                       parent_session=session)
