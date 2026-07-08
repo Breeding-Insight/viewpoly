@@ -58,8 +58,8 @@ This will make the container available in port 8085 (choose other if you prefer)
 The advantage of using this method is that it also give you a portfolio of other tools developed/maintained by Breeding-Insight.
 
 ```{r}
-devtools::install_github("Breeding-Insight/breedverse")
-breedverse::run_app()
+devtools::install_github("Breeding-Insight/Breedverse")
+Breedverse::run_app()
 ```
 
 Go to `Install Modules` and search for VIEWpoly installation button. Once the installation finish, restart the app to access its module on the left side menu.
