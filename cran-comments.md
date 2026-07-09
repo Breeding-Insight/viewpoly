@@ -6,11 +6,11 @@ Dear CRAN Team,
 
 The maintainer email has been changed from chtaniguti@tamu.edu to ctaniguti@ufl.edu.
 
-This is a re-submission of VIEWpoly package. In this version (1.0.0):
+This is a re-submission of VIEWpoly package. In this version (1.0.1):
 
 * Change Shiny design to be Breedverse compliant
 * Add help materials 
-* Remove outdated links for QTLpoly on CRAN and datasets in server
+* Remove outdated links 
 * New maintainer email
 
 Thank you for reviewing our re-submission!
