@@ -63,12 +63,10 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           slug: Breeding-Insight/viewpoly
 
-  debian-sid-test:
+  cran-like-test:
     runs-on: ubuntu-latest
-    container:
-      image: debian:sid
+    container: rhub/debian-gcc-devel  # or similar R-hub image
     steps:
-      - name: Install dependencies
-        run: |
-          apt-get update && apt-get install -y \
-            gcc-16 gfortran-16 r-base-dev git curl
+      - uses: actions/checkout@v4
+      - name: Install net-tools
+        run: apt-get update && apt-get install -y net-tools
