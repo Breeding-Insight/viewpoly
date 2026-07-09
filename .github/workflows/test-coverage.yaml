@@ -27,6 +27,20 @@ jobs:
           extra-packages: any::covr, any::xml2, curl
           needs: coverage
 
-      - uses: r-lib/actions/test-coverage@v2
+      - name: Test coverage
+        run: |
+          cov <- covr::package_coverage(
+            quiet = FALSE,
+            clean = FALSE,
+            install_path = file.path(normalizePath(Sys.getenv("RUNNER_TEMP"), winslash = "/"), "package"),
+            type = "tests"
+          )
+          covr::to_cobertura(cov)
+        shell: Rscript {0}
+
+      - uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./cobertura.xml
+          fail_ci_if_error: ${{ github.event_name != 'pull_request' && true || false }}
+          disable_search: true
