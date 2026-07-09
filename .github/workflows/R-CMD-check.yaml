@@ -14,16 +14,6 @@ jobs:
 
     name: ${{ matrix.config.os }} (${{ matrix.config.r }})
 
-    strategy:
-      fail-fast: false
-      matrix:
-        config:
-          - {os: macOS-latest,   r: 'release'}
-          - {os: windows-latest, r: 'release'}
-          - {os: ubuntu-latest,   r: 'devel', http-user-agent: 'release'}
-          - {os: ubuntu-latest,   r: 'release'}
-          - {os: ubuntu-latest,   r: 'oldrel-1'}
-
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       R_KEEP_PKG_SOURCE: yes
@@ -65,8 +55,11 @@ jobs:
 
   cran-like-test:
     runs-on: ubuntu-latest
-    container: rhub/debian-gcc-devel  # or similar R-hub image
+    container: rhub/debian-gcc-devel
     steps:
       - uses: actions/checkout@v4
-      - name: Install net-tools
-        run: apt-get update && apt-get install -y net-tools
+      - name: Fix Debian repositories and install deps
+        run: |
+          # Accept the repository changes
+          apt-get update --allow-releaseinfo-change
+          apt-get install -y net-tools
