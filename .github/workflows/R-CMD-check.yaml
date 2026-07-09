@@ -2,9 +2,9 @@
 # Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
 on:
   push:
-    branches: [main, development]
+    branches: [main, development, reproduce_cran_error]
   pull_request:
-    branches: [main, development]
+    branches: [main, development, reproduce_cran_error]
 
 name: R-CMD-check
 
@@ -62,3 +62,13 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           slug: Breeding-Insight/viewpoly
+
+  debian-sid-test:
+    runs-on: ubuntu-latest
+    container:
+      image: debian:sid
+    steps:
+      - name: Install dependencies
+        run: |
+          apt-get update && apt-get install -y \
+            gcc-16 gfortran-16 r-base-dev git curl
