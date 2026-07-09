@@ -2,6 +2,7 @@
 
 * Fix URLs
 * Replace custom function by curl to check internet connection for downloading test files (it was breaking in Debian environment check)
+* Avoid downloading files for tests on CRAN
 
 # viewpoly 1.0.0
 
