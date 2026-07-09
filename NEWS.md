@@ -1,3 +1,8 @@
+# viewpoly 1.0.1
+
+* Fix URLs
+* Replace custom function by curl to check internet connection for downloading test files (it was breaking in Debian environment check)
+
 # viewpoly 1.0.0
 
 * Change Shiny design to be Breedverse compliant

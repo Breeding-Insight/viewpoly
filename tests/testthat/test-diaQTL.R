@@ -1,5 +1,6 @@
 test_that("Tests uploaded diaQTL files",{
-  skip_on_ci() # Large files to be downloaded, continuous integration fails because of download timeout
+  skip_on_ci()    # Large files to be downloaded, continuous integration fails because of download timeout
+  skip_on_cran()  # Large files require network access not suitable for CRAN checks
   source(system.file("ext/functions4tests.R", package = "viewpoly"))
 
   # upload diaQTL
