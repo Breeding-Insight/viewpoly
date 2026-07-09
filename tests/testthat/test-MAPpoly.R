@@ -5,7 +5,7 @@ test_that("Tests uploaded MAPpoly files",{
 
   # upload MAPpoly
   temp <- tempfile()
-  if(havingIP()){
+  if(curl::has_internet()){
     options(timeout=200)
     download.file("https://www.polyploids.org/sites/default/files/2022-04/tetra_MAPpoly_maps.RData", destfile = temp)
     temp.name <- load(temp)
