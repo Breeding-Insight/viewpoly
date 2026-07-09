@@ -479,7 +479,7 @@ mod_genes_view_server <- function(input, output, session,
         path.gff <- loadJBrowse_gff3()
         if (grepl("^http", loadJBrowse_gff3())) {
           gff.dir <- tempfile()
-          if (havingIP()) {
+          if (curl::has_internet()) {
             download.file(loadJBrowse_gff3(), destfile = gff.dir)
             gff <- vroom(gff.dir, delim = "\t", skip = 3, col_names = F, progress = FALSE, show_col_types = FALSE)
           } else {

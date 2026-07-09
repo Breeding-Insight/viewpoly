@@ -9,7 +9,7 @@ test_that("Tests uploaded QTLpoly files",{
   est.effects$datapath <- tempfile()
   fitted.mod$datapath <- tempfile()
   
-  if(havingIP()){
+  if(curl::has_internet()){
     options(timeout=200)
     download.file("https://www.polyploids.org/sites/default/files/2022-04/tetra_QTLpoly_effects.RData", destfile = est.effects$datapath)
     download.file("https://www.polyploids.org/sites/default/files/2022-04/tetra_QTLpoly_data.RData", destfile = input.data$datapath)

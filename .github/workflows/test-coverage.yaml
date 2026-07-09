@@ -27,22 +27,6 @@ jobs:
           extra-packages: any::covr, any::xml2, curl
           needs: coverage
 
-      - name: Test coverage
-        run: |
-          cov <- covr::package_coverage(
-            quiet = FALSE,
-            clean = FALSE,
-            install_path = file.path(normalizePath(Sys.getenv("RUNNER_TEMP"), winslash = "/"), "package"),
-            type = "tests"
-          )
-          covr::to_cobertura(cov)
-        shell: Rscript {0}
-
-      - uses: codecov/codecov-action@v5
+      - uses: r-lib/actions/test-coverage@v2
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          slug: Breeding-Insight/viewpoly
-          fail_ci_if_error: ${{ github.event_name != 'pull_request' && true || false }}
-          files: ./cobertura.xml
-          plugins: noop
-          disable_search: true
