@@ -12,3 +12,6 @@
 ^app\.R$
 ^Dockerfile$
 ^\.dockerignore$
+^\tests$
+^inst/tests$
+

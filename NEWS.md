@@ -1,3 +1,8 @@
+# viewpoly 1.0.2
+
+* Reduces installed package size
+* Replace CRAN links by canonical format
+
 # viewpoly 1.0.1
 
 * Fix URLs

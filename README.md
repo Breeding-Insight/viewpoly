@@ -75,7 +75,7 @@ The `Input data` tab has options for several types of inputs. You can upload dir
 * [QTLpoly](https://CRAN.R-project.org/package=qtlpoly)
 * [diaQTL](https://github.com/jendelman/diaQTL)
 * [GWASpoly](https://github.com/jendelman/GWASpoly)
-* [HIDECAN](https://cran.r-project.org/web/packages/hidecan/index.html)
+* [HIDECAN](https://CRAN.R-project.org/package=hidecan)
 * CSV, TSV or TSV.GZ standard formats
 
 To relate the genetic maps and QTL analysis with genomic information, it is also required:
