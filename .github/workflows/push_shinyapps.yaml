@@ -38,6 +38,7 @@ jobs:
       
     - name: Deploy to shinyapps.io
       run: |
+        options(repos = c(CRAN = "https://cran.r-project.org"))
         rsconnect::setAccountInfo(
           name = "${{ secrets.SHINYAPPS_NAME }}",
           token = "${{ secrets.SHINYAPPS_TOKEN }}",
