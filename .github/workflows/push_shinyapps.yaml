@@ -1,0 +1,56 @@
+name: Deploy Golem App to shinyapps.io
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      R_KEEP_PKG_SOURCE: yes
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - uses: r-lib/actions/setup-r@v2
+      with:
+        r-version: '4.3.3'
+        
+    - name: Setup pandoc
+      uses: r-lib/actions/setup-pandoc@v2
+      
+    - uses: r-lib/actions/setup-r-dependencies@v2
+      with:
+        extra-packages: |
+          any::rsconnect
+        needs: |
+          rsconnect
+      
+    - name: Install package
+      run: R CMD INSTALL .
+      
+    - name: Deploy to shinyapps.io
+      run: |
+        rsconnect::setAccountInfo(
+          name = "${{ secrets.SHINYAPPS_NAME }}",
+          token = "${{ secrets.SHINYAPPS_TOKEN }}",
+          secret = "${{ secrets.SHINYAPPS_SECRET }}"
+        )
+        
+        rsconnect::deployApp(
+          appDir = ".",
+          appFiles = c(
+            "R/",
+            "inst/",
+            "DESCRIPTION",
+            "NAMESPACE", 
+            "app.R"
+          ),
+          appName = "viewpoly",
+          forceUpdate = TRUE,
+          lint = FALSE
+        )
+      shell: Rscript {0}

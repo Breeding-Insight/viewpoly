@@ -39,7 +39,8 @@ mod_Home_ui <- function(id){
                               "<p>VIEWpoly graphically displays the QTL profiles, positions, alleles estimated effects, progeny individuals containing specific haplotypes and their breeding values. ",
                               "It is also possible to access marker dosage and parental phase from the linkage map. If genomic information is available, the corresponding QTL positions are interactively explored using JBrowseR interface, allowing the search for candidate genes. ",
                               "It also provides features to download specific information into comprehensive tables and images for further analysis and presentation.</p>",
-                              "<p>VIEWpoly was developed during the <b>Tools for Polyploid Project</b> by researchers at <b>Texas A&M University</b> and <b>North Carolina State University</b> and is now updated and maintained by <b>Breeding Insight</b>.</p>"
+                              "<p>VIEWpoly was developed during the <b>Tools for Polyploid Project</b> by researchers at <b>Texas A&M University</b> and <b>North Carolina State University</b> and is now updated and maintained by <b>Breeding Insight</b>.</p>",
+                              "<p><b>Tutorial Video:</b> <a href='https://youtu.be/OBt_jebhfeY?si=-Tbqv6FmTve1KMk1' target='_blank'>Watch on YouTube</a></p>"
                             )
                           ),
                           style = "overflow-y: auto; height: 500px"
