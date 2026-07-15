@@ -26,6 +26,10 @@ jobs:
       with:
         extra-packages: |
           any::rsconnect
+          any::cpp11
+          any::progress
+          any::RcppArmadillo
+          any::RcppEigen
         needs: |
           rsconnect
       
