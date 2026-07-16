@@ -22,7 +22,7 @@ mod_hidecan_view_ui <- function(id) {
           style = "background-color: white; padding: 15px; border: 1px solid black; position: relative; min-height: 120px;", # Wrap everything in this div
           div(
             style = "position:absolute;right:1em;top:10px;",
-            actionButton(ns("goMap"), "Go to Map", icon("arrow-circle-left", verify_fa = FALSE), style = "background-color: #A896C2 ; border-color: #A896C2 ;")
+            actionButton(ns("goMap"), "Go to Map", icon("arrow-circle-left", verify_fa = FALSE), style = "background-color: #A896C2 ; border-color: #A896C2 ; color: white;")
           ),
           div(
             style = "position:absolute;right:1em;bottom:10px;display:flex;gap:3px;",
@@ -141,7 +141,7 @@ mod_hidecan_view_ui <- function(id) {
           id = ns("box_hidecan"), width = 12, solidHeader = TRUE, collapsible = TRUE, collapsed = FALSE, status = "info", title = "HIDECAN plot",
           div(
             style = "border: 2px solid black; border-radius: 3px; padding: 15px; margin: 10px 0;",
-            "* HIDECAN analysis files or viewpoly object or example dataset (check `Input data` tab)"
+            "* HIDECAN analysis files or VIEWpoly object or example dataset (check `Input data` tab)"
           ), br(), br(),
           fluidRow(
             column(

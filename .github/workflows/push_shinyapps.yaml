@@ -34,9 +34,6 @@ jobs:
         needs: |
           rsconnect
       
-    - name: Install package
-      run: R CMD INSTALL .
-      
     - name: Deploy to shinyapps.io
       run: |
         options(

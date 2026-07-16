@@ -20,8 +20,8 @@ mod_genes_view_ui <- function(id) {
           style = "background-color: white; padding: 15px; border: 1px solid black; position: relative; min-height: 120px;", # Wrap everything in this div
           div(
             style = "position:absolute;right:1em;top:10px;",
-            actionButton(ns("goQTL"), "Go to QTL", icon("arrow-circle-left", verify_fa = FALSE), style = "background-color: #A896C2 ; border-color: #A896C2 ;"),
-            actionButton(ns("goMap"), label = div("Go to Map", icon("arrow-circle-right", verify_fa = FALSE)), style = "background-color: #A896C2 ; border-color: #A896C2 ;")
+            actionButton(ns("goQTL"), "Go to QTL", icon("arrow-circle-left", verify_fa = FALSE), style = "background-color: #A896C2 ; border-color: #A896C2 ; color: white;"),
+            actionButton(ns("goMap"), label = div("Go to Map", icon("arrow-circle-right", verify_fa = FALSE)), style = "background-color: #A896C2 ; border-color: #A896C2 ; color: white;")
           ),
           div(
             style = "position:absolute;right:1em;bottom:10px;display:flex;gap:3px;",
@@ -77,7 +77,7 @@ mod_genes_view_ui <- function(id) {
           id = ns("box_profile"), width = 12, solidHeader = TRUE, collapsible = TRUE, collapsed = TRUE, status = "info", title = "QTL profile",
           div(
             style = "border: 2px solid black; border-radius: 3px; padding: 15px; margin: 10px 0;",
-            "* Requires QTL analysis files or viewpoly object or example dataset (check `Input data` tab)"
+            "* Requires QTL analysis files or VIEWpoly object or example dataset (check `Input data` tab)"
           ), br(), br(),
           fluidRow(
             column(
@@ -112,7 +112,7 @@ mod_genes_view_ui <- function(id) {
           id = ns("box_phi"), width = 12, solidHeader = TRUE, collapsible = TRUE, collapsed = FALSE, status = "info", title = actionLink(inputId = ns("phiID"), label = "Linkage Map position (cM) x Physical position (Mb)"),
           div(
             style = "border: 2px solid black; border-radius: 3px; padding: 15px; margin: 10px 0;",
-            "* Requires MAPpoly linkage map files or viewpoly object or example dataset (check `Input data` tab)"
+            "* Requires MAPpoly linkage map files or VIEWpoly object or example dataset (check `Input data` tab)"
           ), br(), br(),
           fluidRow(
             column(

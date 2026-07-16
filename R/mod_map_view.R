@@ -21,8 +21,8 @@ mod_map_view_ui <- function(id) {
           style = "background-color: white; padding: 15px; border: 1px solid black; position: relative; min-height: 120px;", # Wrap everything in this div
           div(
             style = "position:absolute;right:1em;top:10px;",
-            actionButton(ns("goGenes"), "Go to Genome", icon("arrow-circle-left", verify_fa = FALSE), style = "background-color: #A896C2 ; border-color: #A896C2 ;"),
-            actionButton(ns("goHidecan"), label = div("Go to HIDECAN", icon("arrow-circle-right", verify_fa = FALSE)), style = "background-color: #A896C2 ; border-color: #A896C2 ;")
+            actionButton(ns("goGenes"), "Go to Genome", icon("arrow-circle-left", verify_fa = FALSE), style = "background-color: #A896C2 ; border-color: #A896C2 ; color: white;"),
+            actionButton(ns("goHidecan"), label = div("Go to HIDECAN", icon("arrow-circle-right", verify_fa = FALSE)), style = "background-color: #A896C2 ; border-color: #A896C2 ; color: white;")
           ),
           div(
             style = "position:absolute;right:1em;bottom:10px;display:flex;gap:3px;",
@@ -79,7 +79,7 @@ mod_map_view_ui <- function(id) {
       id = ns("box_profile"), width = 12, solidHeader = TRUE, collapsible = TRUE, collapsed = TRUE, status = "info", title = "QTL profile",
       div(
         style = "border: 2px solid black; border-radius: 3px; padding: 15px; margin: 10px 0;",
-        "* Requires QTL analysis files or viewpoly object or example dataset (check `Input data` tab)"
+        "* Requires QTL analysis files or VIEWpoly object or example dataset (check `Input data` tab)"
       ), br(), br(),
       fluidRow(
         column(
@@ -114,7 +114,7 @@ mod_map_view_ui <- function(id) {
       id = ns("box_map"), width = 12, solidHeader = TRUE, collapsible = TRUE, collapsed = FALSE, status = "info", title = "Map",
       div(
         style = "border: 2px solid black; border-radius: 3px; padding: 15px; margin: 10px 0;",
-        "* Requires Linkage map files or viewpoly object or example dataset (check `Input data` tab)"
+        "* Requires Linkage map files or VIEWpoly object or example dataset (check `Input data` tab)"
       ), br(), br(),
       fluidRow(
         column(
@@ -152,7 +152,7 @@ mod_map_view_ui <- function(id) {
       id = ns("box_mapsumm"), width = 12, solidHeader = TRUE, collapsible = TRUE, collapsed = FALSE, status = "info", title = "Map summary",
       div(
         style = "border: 2px solid black; border-radius: 3px; padding: 15px; margin: 10px 0;",
-        "* Linkage map files or viewpoly object or example dataset (check `Input data` tab)"
+        "* Linkage map files or VIEWpoly object or example dataset (check `Input data` tab)"
       ), br(), br(),
       fluidRow(
         column(

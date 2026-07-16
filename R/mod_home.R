@@ -18,10 +18,10 @@ mod_Home_ui <- function(id){
                fluidRow(
                  column(width = 6,
                         box(
-                          title = "ViewPoly", status = "info", solidHeader = FALSE, width = 12, collapsible = FALSE,
+                          title = "VIEWpoly", status = "info", solidHeader = FALSE, width = 12, collapsible = FALSE,
                           HTML(
                             "<div style='text-align: center; margin-top: 10px; margin-bottom: 10px;'>
-                                <img src='www/viewpoly_logo.png' alt='ViewPoly logo' style='width: 120px; height: 140px;'>
+                                <img src='www/viewpoly_logo.png' alt='VIEWpoly logo' style='width: 120px; height: 140px;'>
                               </div>",
                             paste0(
                               "<p><b>About VIEWpoly</b></p>",
@@ -105,7 +105,7 @@ mod_Home_ui <- function(id){
                  target = "_blank",  # Optional: opens the link in a new tab
                  valueBox(
                    value = NULL,
-                   subtitle = "ViewPoly Tutorial",
+                   subtitle = "VIEWpoly Tutorial",
                    icon = icon("compass"),
                    color = "info",
                    gradient = TRUE,

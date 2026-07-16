@@ -19,8 +19,8 @@ mod_upload_ui <- function(id) {
           style = "background-color: white; padding: 15px; border: 1px solid black; position: relative; min-height: 120px;", # Wrap everything in this div
           div(
             style = "position:absolute;right:1em;top:10px;",
-            actionButton(ns("goAbout"), "Go to Home", icon("arrow-circle-left", verify_fa = FALSE), style = "background-color: #A896C2 ; border-color: #A896C2 ;"),
-            actionButton(ns("goQTL"), label = div("Go to QTL", icon("arrow-circle-right", verify_fa = FALSE)), style = "background-color: #A896C2 ; border-color: #A896C2 ;")
+            actionButton(ns("goAbout"), "Go to Home", icon("arrow-circle-left", verify_fa = FALSE), style = "background-color: #A896C2 ; border-color: #A896C2 ; color: white;"),
+            actionButton(ns("goQTL"), label = div("Go to QTL", icon("arrow-circle-right", verify_fa = FALSE)), style = "background-color: #A896C2 ; border-color: #A896C2 ; color: white;")
           ),
           div(
             style = "position:absolute;right:1em;bottom:10px;display:flex;gap:3px;",
