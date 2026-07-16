@@ -34,6 +34,24 @@ jobs:
         needs: |
           rsconnect
       
+    - name: Fix CRAN source URLs for shinyapps.io
+      # pak records RemoteReposName: CRAN (a name, not a URL) in installed package
+      # DESCRIPTIONs. renv uses that name as the Repository value in the lockfile,
+      # producing CRAN/src/contrib/... which shinyapps.io cannot resolve.
+      # Patching it to the full CRAN URL fixes the manifest before deployment.
+      run: |
+        cran_url <- "https://cran.r-project.org"
+        lib <- .libPaths()[1L]
+        for (pkg in list.files(lib)) {
+          desc <- file.path(lib, pkg, "DESCRIPTION")
+          if (!file.exists(desc)) next
+          txt <- readLines(desc, warn = FALSE)
+          new_txt <- sub("^(RemoteReposName: )CRAN$", paste0("\\1", cran_url), txt)
+          new_txt <- sub("^(Repository: )CRAN$",      paste0("\\1", cran_url), new_txt)
+          if (!identical(txt, new_txt)) writeLines(new_txt, desc)
+        }
+      shell: Rscript {0}
+
     - name: Deploy to shinyapps.io
       run: |
         options(
