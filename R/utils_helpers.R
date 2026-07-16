@@ -730,3 +730,8 @@ $('#' + boxid).closest('.box').find('[data-widget=collapse]').click();
 globalVariables("js")
 
 
+# Helper: render a Markdown/Rmd file to HTML by passing its contents as text,
+# so markdown::mark() returns HTML in memory without writing any output file.
+include_md <- function(path) {
+  shiny::HTML(markdown::mark(paste(readLines(path, warn = FALSE), collapse = "\n")))
+}

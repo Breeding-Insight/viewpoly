@@ -1,6 +1,6 @@
 Package: viewpoly
 Title: A Shiny App to Visualize Genetic Maps and QTL Analysis in Polyploid Species
-Version: 1.0.2
+Version: 1.0.3
 Authors@R: c(
            person(given = "Cristiane",
                   family = "Taniguti",
@@ -69,7 +69,8 @@ Imports:
     curl,
     hidecan,
     purrr,
-    bs4Dash
+    bs4Dash,
+    markdown
 URL: https://github.com/Breeding-Insight/viewpoly
 BugReports: https://github.com/Breeding-Insight/viewpoly/issues
 Encoding: UTF-8
@@ -80,7 +81,6 @@ Suggests:
     rlang,
     pkgload,
     vdiffr,
-    markdown,
     shinytest
 Config/testthat/edition: 3
 Language: en-US

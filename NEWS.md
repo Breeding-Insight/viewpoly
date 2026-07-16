@@ -1,3 +1,10 @@
+# viewpoly 1.0.3
+
+* Avoid Rmarkdown links to redirect app page to home
+* Add helper function to prevent includeMarkdown to write temporary files into user library directory
+* Include color accessibility on buttons
+* Add GitHub actions to build shinyapps.io when main is updated 
+
 # viewpoly 1.0.2
 
 * Reduces installed package size

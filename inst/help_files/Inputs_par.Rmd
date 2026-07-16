@@ -16,6 +16,7 @@ Access complete example datasets at [polyploids.org](https://www.polyploids.org/
 Upload linkage maps built with the [MAPpoly](https://cran.r-project.org/web/packages/mappoly/index.html) package:
 
 - **Required file**: Object of class `mappoly.map` (RData format)
+- **Example files names**: `hexa_MAPpoly_maps.RData`, `tetra_MAPpoly_maps.RData`
 - **Tutorial**: [MAPpoly vignette](https://rpubs.com/mmollin/tetra_mappoly_vignette)
 - **VIEWpoly integration**: [How to prepare MAPpoly outputs](https://cristianetaniguti.github.io/viewpoly_vignettes/VIEWpoly_tutorial.html#Upload_linkage_map_files)
 
@@ -26,6 +27,7 @@ Upload linkage maps built with the [polymapR](https://cran.r-project.org/web/pac
 - **Required files**: 
   - `polymapR.dataset.RData`
   - `polymapR.map.RData`
+- **Example files names**: `tetra_polymapR_dataset.RData`, `tetra_polymapR_maps.RData`
 - **Data type**: Select discrete or probabilistic genotype input
 - **Ploidy**: Specify ploidy level (4 or 6)
 - **Tutorial**: [polymapR vignette](https://cran.r-project.org/web/packages/polymapR/vignettes/Vignette_polymapR.html)
@@ -61,6 +63,7 @@ Upload QTL analysis results from [QTLpoly](https://github.com/gabrielgesteira/QT
   - `QTLpoly_remim.mod.RData` (class: qtlpoly.remim)
   - `QTLpoly_est.effects.RData` (class: qtlpoly.effects)
   - `QTLpoly_fitted.mod.RData` (class: qtlpoly.fitted)
+- **Example files names**: `tetra_QTLpoly_data.RData`, `tetra_QTLpoly_remim.mod.RData`, `tetra_QTLpoly_est.effects.RData`, `tetra_QTLpoly_fitted.mod.RData`, `hexa_QTLpoly_data.RData`, `hexa_QTLpoly_remim.mod.RData`, `hexa_QTLpoly_est.effects.RData`, `hexa_QTLpoly_fitted.mod.RData`
 - **Tutorial**: [QTLpoly tutorial](https://gabrielgesteira.github.io/QTLpoly/docs/1-tutorial)
 
 ##### diaQTL Output
@@ -72,6 +75,7 @@ Upload QTL analysis from [diaQTL](https://github.com/jendelman/diaQTL):
   - `diaQTL_scan1.summaries_list.RData`
   - `diaQTL_BayesCI_list.RData`
   - `diaQTL_fitQTL_list.RData`
+- **Example files names**: `tetra_diaQTL_scan1_list.RData`, `tetra_diaQTL_scan1_summaries_list.RData`, `tetra_diaQTL_BayesCI_list.RData`, `tetra_diaQTL_fitQTL_list.RData`
 - **Tutorial**: [diaQTL vignette](https://jendelman.github.io/diaQTL/diaQTL_Vignette.html)
 
 ##### polyqtlR Output
@@ -82,6 +86,7 @@ Upload QTL analysis from [polyqtlR](https://cran.r-project.org/web/packages/poly
   - `polyqtlR_effects.RData`
   - `polyqtlR_qtl_info.RData`
   - `polyqtlR_QTLscan_list.RData`
+- **Example files names**: `tetra_polyqtlR_effects.RData`, `tetra_polyqtlR_qtl_info.RData`, `tetra_polyqtlR_QTLscan_list.RData`, `hexa_polyqtlR_effects.RData`, `hexa_polyqtlR_qtl_info.RData`, `hexa_polyqtlR_QTLscan_list.RData`
 - **Tutorial**: [polyqtlR vignette](https://cran.r-project.org/web/packages/polyqtlR/vignettes/polyqtlR_vignette.html)
 
 #### Custom QTL Format

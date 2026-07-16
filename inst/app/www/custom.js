@@ -1,4 +1,15 @@
 $(document).ready(function() {
+  // Open external links in a new tab to prevent AdminLTE router from
+  // intercepting them and navigating back to Home
+  $(document).on('click', 'a[href^="http"]', function(e) {
+    var href = $(this).attr('href');
+    if (href && !href.startsWith(window.location.origin)) {
+      e.preventDefault();
+      e.stopPropagation();
+      window.open(href, '_blank', 'noopener,noreferrer');
+    }
+  });
+
   // Use event delegation for dynamically created elements
   $(document).on('click', '.card-header', function(e) {
     // Don't trigger if clicking on the actual collapse button

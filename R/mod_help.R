@@ -6,7 +6,7 @@
 #'
 #' @noRd
 #'
-#' @importFrom shiny NS tagList includeMarkdown fluidPage column div br tabPanel
+#' @importFrom shiny NS tagList HTML fluidPage column div br tabPanel
 #'
 mod_help_ui <- function(id) {
   ns <- NS(id)
@@ -33,15 +33,15 @@ mod_help_ui <- function(id) {
             id = "Inputs_tabset",
             tabPanel("Parameters description",
               value = "Inputs_par", br(),
-              includeMarkdown(system.file("help_files/Inputs_par.Rmd", package = "viewpoly"))
+              include_md(system.file("help_files/Inputs_par.Rmd", package = "viewpoly"))
             ),
             tabPanel("Results description",
               value = "Inputs_results", br(),
-              includeMarkdown(system.file("help_files/Inputs_res.Rmd", package = "viewpoly"))
+              include_md(system.file("help_files/Inputs_res.Rmd", package = "viewpoly"))
             ),
             tabPanel("How to cite",
               value = "Inputs_cite", br(),
-              includeMarkdown(system.file("help_files/Inputs_cite.Rmd", package = "viewpoly"))
+              include_md(system.file("help_files/Inputs_cite.Rmd", package = "viewpoly"))
             )
           )
         ),
@@ -53,15 +53,15 @@ mod_help_ui <- function(id) {
             id = "QTL_tabset",
             tabPanel("Parameters description",
               value = "QTL_par", br(),
-              includeMarkdown(system.file("help_files/QTL_par.Rmd", package = "viewpoly"))
+              include_md(system.file("help_files/QTL_par.Rmd", package = "viewpoly"))
             ),
             tabPanel("Results description",
               value = "QTL_results", br(),
-              includeMarkdown(system.file("help_files/QTL_res.Rmd", package = "viewpoly"))
+              include_md(system.file("help_files/QTL_res.Rmd", package = "viewpoly"))
             ),
             tabPanel("How to cite",
               value = "QTL_cite", br(),
-              includeMarkdown(system.file("help_files/QTL_cite.Rmd", package = "viewpoly"))
+              include_md(system.file("help_files/QTL_cite.Rmd", package = "viewpoly"))
             )
           )
         ),
@@ -73,15 +73,15 @@ mod_help_ui <- function(id) {
             id = "Genome_tabset",
             tabPanel("Parameters description",
               value = "Genome_par", br(),
-              includeMarkdown(system.file("help_files/Genome_par.Rmd", package = "viewpoly"))
+              include_md(system.file("help_files/Genome_par.Rmd", package = "viewpoly"))
             ),
             tabPanel("Results description",
               value = "Genome_results", br(),
-              includeMarkdown(system.file("help_files/Genome_res.Rmd", package = "viewpoly"))
+              include_md(system.file("help_files/Genome_res.Rmd", package = "viewpoly"))
             ),
             tabPanel("How to cite",
               value = "Genome_cite", br(),
-              includeMarkdown(system.file("help_files/Genome_cite.Rmd", package = "viewpoly"))
+              include_md(system.file("help_files/Genome_cite.Rmd", package = "viewpoly"))
             )
           )
         ),
@@ -93,15 +93,15 @@ mod_help_ui <- function(id) {
             id = "Map_tabset",
             tabPanel("Parameters description",
               value = "Map_par", br(),
-              includeMarkdown(system.file("help_files/Map_par.Rmd", package = "viewpoly"))
+              include_md(system.file("help_files/Map_par.Rmd", package = "viewpoly"))
             ),
             tabPanel("Results description",
               value = "Map_results", br(),
-              includeMarkdown(system.file("help_files/Map_res.Rmd", package = "viewpoly"))
+              include_md(system.file("help_files/Map_res.Rmd", package = "viewpoly"))
             ),
             tabPanel("How to cite",
               value = "Map_cite", br(),
-              includeMarkdown(system.file("help_files/Map_cite.Rmd", package = "viewpoly"))
+              include_md(system.file("help_files/Map_cite.Rmd", package = "viewpoly"))
             )
           )
         ),
@@ -113,15 +113,15 @@ mod_help_ui <- function(id) {
             id = "Hidecan_tabset",
             tabPanel("Parameters description",
               value = "Hidecan_par", br(),
-              includeMarkdown(system.file("help_files/Hidecan_par.Rmd", package = "viewpoly"))
+              include_md(system.file("help_files/Hidecan_par.Rmd", package = "viewpoly"))
             ),
             tabPanel("Results description",
               value = "Hidecan_results", br(),
-              includeMarkdown(system.file("help_files/Hidecan_res.Rmd", package = "viewpoly"))
+              include_md(system.file("help_files/Hidecan_res.Rmd", package = "viewpoly"))
             ),
             tabPanel("How to cite",
               value = "Hidecan_cite", br(),
-              includeMarkdown(system.file("help_files/Hidecan_cite.Rmd", package = "viewpoly"))
+              include_md(system.file("help_files/Hidecan_cite.Rmd", package = "viewpoly"))
             )
           )
         )
